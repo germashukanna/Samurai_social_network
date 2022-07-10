@@ -50,7 +50,8 @@ let store: StoreType = {
 
             ],
             newPostText: "",
-            profile: null
+            profile: null,
+            status: ''
         },
         dialogsPage: {
             dialogsData: [

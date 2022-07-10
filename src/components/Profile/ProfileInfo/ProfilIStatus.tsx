@@ -1,40 +1,58 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './ProfileInfo.module.css'
 
 
+
 type ProfileStatusType = {
-    status: string
+    status: string,
+    updateStatusTC: (status: string) => void
+
 }
 
-class ProfilIStatus extends React.Component<ProfileStatusType>{
-        state = {
-        editMode: false
+class ProfilIStatus extends React.Component<ProfileStatusType> {
+
+    state = {
+        editMode: false,
+        status: !this.props.status
     }
 
-    activateEditMode  () {
+    activateEditMode() {
         this.setState({
             editMode: true
         })
     }
-    deactivateEditMode  () {
+
+    deactivateEditMode = () => {
         this.setState({
             editMode: false
-        })
+        });
+        this.props.updateStatusTC(this.state.status)
     }
+
+    onStatusChange = (event: ChangeEvent<HTMLInputElement>) => {
+       this.setState({
+           status: event.currentTarget.value
+       });
+    }
+
+
     render() {
         return (
-                    <>
-            {!this.state.editMode &&
-                <div>
-                    <span onDoubleClick={this.activateEditMode.bind(this)}> {this.props.status}</span>
-                </div>
-            }
-            {this.state.editMode &&
-                <div>
-                    <input onBlur={this.deactivateEditMode.bind(this)} value={this.props.status}/>
-                </div>
-            }
-        </>
+            <>
+                {!this.state.editMode &&
+                    <div>
+                        <span onDoubleClick={this.activateEditMode}> {this.props.status || "-------"}</span>
+                    </div>
+                }
+                {this.state.editMode &&
+                    <div>
+                        <input onBlur={this.deactivateEditMode}
+                               value={this.props.status} autoFocus={true}
+                               onChange={this.onStatusChange}
+                        />
+                    </div>
+                }
+            </>
         )
     }
 }

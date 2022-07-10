@@ -7,9 +7,8 @@ import {ProfilePropsType} from "./ProfileContainer";
 const Profile: React.FC<ProfilePropsType> = (props) => {
     return (
     <div>
-        <ProfileInfo profile={props.profile}/>
+        <ProfileInfo profile={props.profile}  status={props.status} updateStatusTC={props.updateStatusTC}/>
         <MyPostsContainer />
-
     </div>
     )
 }

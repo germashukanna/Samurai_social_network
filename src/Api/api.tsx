@@ -5,7 +5,7 @@ const instance = axios.create({
     withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     headers: {
-        'API-KEY': '452e7b3d-3513-4dc5-9168-39a6fb5e0ff0'
+        'API-KEY': 'a52700d3-7991-48d5-ac35-fcdb339c5b05'
     }
 })
 
@@ -16,8 +16,9 @@ export const getAPI = {
     },
 
     getProfile(userId: number) {
-        return instance.get(`profile/${userId}`)
-            .then(response => response.data)
+        console.warn("Obsolete method. Please profileAPI object")
+        return profileAPI.getProfile(userId)
+
     },
 
     getAuthMe() {
@@ -33,6 +34,21 @@ export const getAPI = {
         return instance.post(`follow/${id}`)
             .then(response => response.data)
     }
+}
+
+export const profileAPI = {
+    getProfile(userId: number) {
+        return instance.get(`profile/${userId}`)
+            .then(response => response.data)
+    },
+    getStatus(userId: number) {
+        return instance.get(`profile/status/${userId}`)
+            .then(response => response.data)
+    },
+    updateStatus(status: string) {
+        return instance.put(`profile/status`, {status: status})
+            .then(response => response.data)
+    },
 }
 
 
