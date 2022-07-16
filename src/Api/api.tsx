@@ -51,4 +51,30 @@ export const profileAPI = {
     },
 }
 
+export const loginAPI = {
+    me(data: LoginParamsType) {
+        return instance.get(`auth/me`, {data})
+            .then(response => response.data)
+    },
+    login(userId?: number) {
+        return instance.post(`auth/login/`, userId)
+            .then(response => response.data)
+    },
+    loginOut(userId?: number) {
+        return instance.delete(`auth/login`)
+            .then(response => response.data)
+    },
+}
+
+export type LoginParamsType = {
+    email: string
+    password: string
+    rememberMe: boolean
+    captcha?: string
+}
+
+
+
+
+
 

@@ -35,6 +35,13 @@ class ProfilIStatus extends React.Component<ProfileStatusType> {
        });
     }
 
+    componentDidUpdate(prevProps: Readonly<ProfileStatusType>, prevState: Readonly<{}>, snapshot?: any) {
+        if(prevProps.status !== this.props.status){
+            this.setState({
+                status: this.props.status
+            })
+        }
+    }
 
     render() {
         return (
@@ -47,7 +54,7 @@ class ProfilIStatus extends React.Component<ProfileStatusType> {
                 {this.state.editMode &&
                     <div>
                         <input onBlur={this.deactivateEditMode}
-                               value={this.props.status} autoFocus={true}
+                               value={this.state.status} autoFocus={true}
                                onChange={this.onStatusChange}
                         />
                     </div>
