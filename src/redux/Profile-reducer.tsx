@@ -2,7 +2,6 @@ import {getAPI, profileAPI} from "../Api/api";
 import {Dispatch} from "redux";
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 
@@ -44,7 +43,7 @@ type ContactsType = {
 }
 
 export type ActionsProfileTypes = ReturnType<typeof addPostActionCreactor>
-    | ReturnType<typeof updateNewPostTextActionCreactor> | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setStatusAC>
 
 const initialState = {
@@ -58,14 +57,13 @@ const initialState = {
     status: ''
 };
 
-// export type InitialStateType = typeof initialState
 
 const profileReducer = (state: ProfilePageType = initialState, action: ActionsProfileTypes): ProfilePageType => {
     switch (action.type) {
         case ADD_POST: {
             let newPost = {
                 id: 5,
-                post: state.newPostText,
+                post: action.message,
                 likesCount: 0
             };
             return {
@@ -74,11 +72,6 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsPr
                 newPostText: ''
             };
         }
-        case UPDATE_NEW_POST_TEXT:
-            return {
-                ...state,
-                newPostText: action.newText
-            }
         case SET_USER_PROFILE:
             return {
                 ...state,
@@ -95,8 +88,7 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsPr
 
 }
 
-export const addPostActionCreactor = () => ({type: ADD_POST} as const)
-export const updateNewPostTextActionCreactor = (text: string) => ({type: UPDATE_NEW_POST_TEXT, newText: text} as const)
+export const addPostActionCreactor = (message: string) => ({type: ADD_POST, message} as const)
 export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile} as const)
 export const setStatusAC = (status: string) => ({type: SET_STATUS, status} as const)
 
@@ -117,7 +109,7 @@ export const setStatusTC = (userId: number) => (dispatch: Dispatch<ActionsProfil
 export const updateStatusTC = (status: string) => (dispatch: Dispatch<ActionsProfileTypes>) => {
     profileAPI.updateStatus(status)
         .then(res => {
-            if (res.data.resultCode === 0){
+            if (res.data.resultCode === 0) {
                 dispatch(setStatusAC(status))
             }
         });

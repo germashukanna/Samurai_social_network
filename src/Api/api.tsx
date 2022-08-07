@@ -56,11 +56,11 @@ export const loginAPI = {
         return instance.get(`auth/me`, {data})
             .then(response => response.data)
     },
-    login(userId?: number) {
-        return instance.post(`auth/login/`, userId)
+    login(email: string, password:string, rememberMe: boolean) {
+        return instance.post(`auth/login/`, {email, password, rememberMe})
             .then(response => response.data)
     },
-    loginOut(userId?: number) {
+    loginOut() {
         return instance.delete(`auth/login`)
             .then(response => response.data)
     },

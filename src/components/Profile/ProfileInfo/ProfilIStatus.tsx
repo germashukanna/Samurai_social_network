@@ -1,6 +1,4 @@
 import React, {ChangeEvent} from 'react';
-import s from './ProfileInfo.module.css'
-
 
 
 type ProfileStatusType = {
@@ -65,3 +63,4 @@ class ProfilIStatus extends React.Component<ProfileStatusType> {
 }
 
 export default ProfilIStatus
+

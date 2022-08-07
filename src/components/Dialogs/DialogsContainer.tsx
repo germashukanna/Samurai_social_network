@@ -1,4 +1,4 @@
-import {DialogsPageType, sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/Dialogs-reducer";
+import {DialogsPageType, sendMessageCreator} from "../../redux/Dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
@@ -12,8 +12,7 @@ type mapStatePropsType = {
 }
 
 type matDispatchPropsType = {
-    onSendMessageChange: (body: string) => void
-    sendMessage: () => void
+    sendMessage: (message: string) => void
 }
 
 export type DialogsPropsType = mapStatePropsType & matDispatchPropsType
@@ -26,18 +25,12 @@ const mapStateToProps = (state: AppStateType): mapStatePropsType => {
 
 const mapDispatchToProps = (dispatch: Dispatch): matDispatchPropsType => {
     return {
-        onSendMessageChange: (body: string) => {
-            dispatch(updateNewMessageBodyCreator(body));
-        },
-        sendMessage: () => {
-            dispatch(sendMessageCreator())
+        sendMessage: (message: string) => {
+            dispatch(sendMessageCreator(message));
         }
     }
 }
-//
-// let AuthRedirectComponent = withAuthRedirect (Dialogs)
-//
-// export const SuperDialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
+
 
 export default compose<React.ComponentType>(
     connect(mapStateToProps, mapDispatchToProps),

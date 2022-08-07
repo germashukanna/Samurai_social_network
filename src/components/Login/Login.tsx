@@ -6,16 +6,19 @@ import TextField from "@mui/material/TextField/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox/Checkbox";
 import Button from "@mui/material/Button/Button";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
+import { useAppDispatch } from "../../redux/Hooks";
+import {loginTC} from "../../redux/auth-reducer";
+
 
 
 type loginPropsType = {}
 
 export const LoginForm = (props: loginPropsType) => {
 
-const isLoggedIh = useSelector((state: AppStateType) => state.login.isLoggedIh)
-const dispatch = useDispatch()
+const isLoggedIh = useSelector((state: AppStateType) => state.auth.isAuth)
+const dispatch = useAppDispatch()
 
 type FormikErrorType = {
     email?: string
@@ -41,7 +44,7 @@ const formik = useFormik({
         return errors
     },
     onSubmit: values => {
-        dispatch(loginTC(values))
+        dispatch(loginTC())
         formik.resetForm();
     },
 })
