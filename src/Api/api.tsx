@@ -20,7 +20,6 @@ export const getAPI = {
         return profileAPI.getProfile(userId)
 
     },
-
     getAuthMe() {
         return instance.get(`auth/me`)
             .then(response => response.data)
@@ -52,12 +51,8 @@ export const profileAPI = {
 }
 
 export const loginAPI = {
-    me(data: LoginParamsType) {
-        return instance.get(`auth/me`, {data})
-            .then(response => response.data)
-    },
     login(email: string, password:string, rememberMe: boolean) {
-        return instance.post(`auth/login/`, {email, password, rememberMe})
+        return instance.post(`auth/login`, {email, password, rememberMe})
             .then(response => response.data)
     },
     loginOut() {

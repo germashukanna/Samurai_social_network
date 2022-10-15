@@ -1,13 +1,11 @@
 import profileReducer, {
     addPostActionCreactor,
     ProfilePageType,
-    updateNewPostTextActionCreactor
 } from "./Profile-reducer";
 import dialogPageReducer, {
     DialogsPageType,
     sendMessageCreator,
-    updateNewMessageBodyCreator
-} from "./Dialogs-reducer";
+    } from "./Dialogs-reducer";
 import sidebarReducer from "./Sidebar-reducer";
 
 
@@ -32,14 +30,13 @@ export type StoreType = {
     _onChange: (state:StateType) => void
     getState: () => StateType
     subscribe:(observer: (state: StateType) => void) => void
-    dispatch: (action: AddPostActionType|SendMessageActionType|UpdateNewPostActionType|updateNewMessageBodyActionType) => void
+    dispatch: (action: AddPostActionType|SendMessageActionType) => void
 
 }
 
 export type AddPostActionType = ReturnType<typeof addPostActionCreactor>
 export type SendMessageActionType = ReturnType<typeof sendMessageCreator>
-export type UpdateNewPostActionType = ReturnType<typeof updateNewPostTextActionCreactor>
-export type updateNewMessageBodyActionType = ReturnType<typeof updateNewMessageBodyCreator>
+
 
 let store: StoreType = {
     _state: {

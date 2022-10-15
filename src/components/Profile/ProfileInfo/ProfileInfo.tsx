@@ -20,7 +20,6 @@ const ProfileInfo: React.FC<ProfileInfo> = (props) => {
 
             {/*  </div>*/}
             <div className={s.descriptionBlock}>
-
                 <img src={props.profile.photos.large}/>
                 <ProfileStatus status={props.status} updateStatusTC={props.updateStatusTC}/>
             </div>
