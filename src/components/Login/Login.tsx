@@ -29,12 +29,14 @@ export type FormDataType = {
     rememberMe: boolean
 }
 
+type FormikErrorType = {
+    email?: string
+    password?: string
+    rememberMe?: boolean
+}
+
 export const LoginForm: React.FC<PropsType> = (props) => {
-    type FormikErrorType = {
-        email?: string
-        password?: string
-        rememberMe?: boolean
-    }
+
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -57,7 +59,7 @@ export const LoginForm: React.FC<PropsType> = (props) => {
             props.onHandlerSubmit(values)
             formik.resetForm();
         },
-})
+    })
     return (
         <div style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
             <form onSubmit={formik.handleSubmit}>
@@ -102,13 +104,14 @@ export const Login = () => {
     const authUserId = useAppSelector((state: AppStateType) => state.auth.id)
     const dispatch = useAppDispatch()
 
+    const onHandlerSubmit = (formData: FormDataType) => {
+        dispatch(loginTC(formData.email, formData.password, formData.rememberMe));
+    }
+
     const onClickLogout = () => {
         dispatch(logOutTC())
     }
 
-    const onHandlerSubmit = (formData: FormDataType) => {
-        dispatch(loginTC(formData.email, formData.password, formData.rememberMe));
-    }
     return (
         <div style={{position: 'fixed', top: '22%', textAlign: 'center', width: '100%'}}>
             {isLoggedIh ? <Navigate to={"/profile/" + authUserId}/>

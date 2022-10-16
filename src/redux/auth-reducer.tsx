@@ -1,35 +1,27 @@
 import {getAPI, loginAPI} from "../Api/api";
-import {Dispatch} from "redux";
-import {AppThunkType} from "./redux-store";
+import {AppDispatch, AppThunkType} from "./redux-store";
 
-const SET_USERS_DATA = "SET_USERS_DATA"
-
-// type initialStateType = typeof initialState
 
 export type AuthPageType = {
-    id: null | number
-    email: null | string
-    login: null | string
+    id: number | null
+    email: string | null
+    login: string | null
     isAuth: boolean
-    // isFetching: boolean
-    // photo: string
 }
 
-export type ActionsAuthTypes = ReturnType<typeof setAuthUserDataAC>
-
-export const initialState: AuthPageType = {
-    id: 0,
-    email: "",
-    login: "",
+export const initialState = {
+    id: null,
+    email: null,
+    login: null,
     isAuth: false,
-    // isFetching: true,
-    // photo: ''
 }
 
+export type ActionAuthType = ReturnType<typeof setAuthUserDataAC>
 
-export const authsReducer = (state: AuthPageType = initialState, action: ActionsAuthTypes): AuthPageType => {
+
+export const authsReducer = (state: AuthPageType = initialState, action: ActionAuthType): AuthPageType => {
     switch (action.type) {
-        case SET_USERS_DATA:
+        case "auth/SET-USERS-DATA":
             return {
                 ...state,
                 ...action.payload,
@@ -41,36 +33,40 @@ export const authsReducer = (state: AuthPageType = initialState, action: Actions
 }
 
 
-export const setAuthUserDataAC = (id: null | number, email: null | string, login: null | string, isAuth: boolean) => {
-    return {type: SET_USERS_DATA, payload: {id, email, login, isAuth}} as const
+export const setAuthUserDataAC = (id: number, email: string, login: string, isAuth: boolean) => {
+    return {type: "auth/SET-USERS-DATA", payload: {id, email, login, isAuth}} as const
 }
 
 
 //Thunks
 export const getAuthUserData = (): AppThunkType => {
-    return (dispatch: Dispatch<ActionsAuthTypes>) => {
+    return (dispatch: AppDispatch) => {
         getAPI.getAuthMe()
-            .then(res => {
-                if (res.data.resultCode === 0) {
-                    let {id, login, email} = res.data;
+            .then((data) => {
+                if (data.resultCode === 0) {
+                    let {id, login, email} = data.data;
                     dispatch(setAuthUserDataAC(id, email, login, true));
                 }
             });
     }
 }
 
-export const loginTC = (email: string, password: string, rememberMe: boolean): AppThunkType => async (dispatch) => {
-    const response = await loginAPI.login(email, password, rememberMe)
-    if (response.data.resultCode === 0) {
-        dispatch(getAuthUserData())
+export const loginTC = (email: string, password: string, rememberMe: boolean): AppThunkType => {
+    return (dispatch: AppDispatch) => {
+        loginAPI.login(email, password, rememberMe)
+            .then((data) => {
+                if (data.resultCode === 0) {
+                    dispatch(getAuthUserData())
+                }
+            })
     }
 }
 
 export const logOutTC = (): AppThunkType =>
-    (dispatch: Dispatch<ActionsAuthTypes>) => {
+    (dispatch: AppDispatch) => {
         loginAPI.loginOut()
-            .then(res => {
-                if (res.data.resultCode === 0) {
+            .then((data) => {
+                if (data.resultCode === 0) {
                     dispatch(setAuthUserDataAC(0, '', '', false))
                 }
             })

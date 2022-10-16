@@ -52,7 +52,7 @@ export const profileAPI = {
 
 export const loginAPI = {
     login(email: string, password:string, rememberMe: boolean) {
-        return instance.post(`auth/login`, {email, password, rememberMe})
+        return instance.post<ResponseType<{userId: number}>>(`auth/login`, {email, password, rememberMe})
             .then(response => response.data)
     },
     loginOut() {
@@ -67,6 +67,14 @@ export type LoginParamsType = {
     rememberMe: boolean
     captcha?: string
 }
+
+export type ResponseType<T> = {
+    data: T
+    resultCode: number
+    messages: string[]
+    fieldsErrors: string[]
+}
+
 
 
 
