@@ -111,6 +111,7 @@ export const getUsers = (currentPage: number, pageSize: number) => {
     return (dispatch: Dispatch<ActionsUsersTypes>) => {
 
         dispatch(toggleIsFetching(true));
+        dispatch(setCurrentPage(currentPage));
 
         getAPI.getUsers(currentPage, pageSize).then(data => {
             dispatch(toggleIsFetching(false));
