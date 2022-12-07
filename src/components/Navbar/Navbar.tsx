@@ -9,7 +9,7 @@ type NavbarPropsType = {
     state: SidebarType,
 }
 
-const Navbar: React.FC<NavbarPropsType> = (props) => {
+const Navbar: React.FC<NavbarPropsType> = React.memo((props) => {
   return (
     <nav className={s.nav}>
       <div><NavLink to="/profile/" className={(navData) => navData.isActive ? s.active:s.item}>Profile</NavLink></div>
@@ -25,6 +25,6 @@ const Navbar: React.FC<NavbarPropsType> = (props) => {
 
     </nav>
   )
-}
+})
 
 export default Navbar

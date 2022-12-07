@@ -7,7 +7,7 @@ import {logOutTC} from "../../redux/auth-reducer";
 import Button from "@mui/material/Button/Button";
 
 
-const Header: React.FC<HeaderPropsType> = (props) => {
+const Header: React.FC<HeaderPropsType> = React.memo((props) => {
     const dispatch = useAppDispatch()
 
     const onClickLogoutButton = () => {
@@ -23,6 +23,6 @@ const Header: React.FC<HeaderPropsType> = (props) => {
                 : <NavLink to="/login">Login</NavLink>}
         </div>
     </header>
-}
+})
 
 export default Header

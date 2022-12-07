@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import Settings from "./components/Settings/Settings";
 import Music from "./components/Music/Music";
@@ -11,16 +11,26 @@ import {Login} from "./components/Login/Login";
 import {ReduxStoreType} from "./redux/redux-store";
 import Dialogs from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
+import {useAppDispatch, useAppSelector} from "./redux/Hooks";
+import {initialazeAppTC} from "./redux/app-reducer";
 
 
 
 type AppPropsType = {
     store: ReduxStoreType
-
 }
+
+
 
 const App: React.FC<AppPropsType> = (props) => {
     const state = props.store.getState()
+    const initialazedSuccss = useAppSelector((state) => state.app.initialazed)
+
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(initialazeAppTC())
+    }, [dispatch])
 
     return (
         <BrowserRouter>

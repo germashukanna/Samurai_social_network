@@ -7,12 +7,12 @@ type SidebarItemPropsType = {
     name: string
 }
 
-export const SidebarItem: React.FC<SidebarItemPropsType> = (props) => {
+export const SidebarItem: React.FC<SidebarItemPropsType> = React.memo((props) => {
     return (
         <li className={s.item}>
             <img src={props.img} alt={''}/>
             <span>{props.name}</span>
         </li>
     );
-};
+})
 

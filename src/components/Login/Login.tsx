@@ -35,7 +35,7 @@ type FormikErrorType = {
     rememberMe?: boolean
 }
 
-export const LoginForm: React.FC<PropsType> = (props) => {
+export const LoginForm: React.FC<PropsType> = React.memo((props) => {
 
     const formik = useFormik({
         initialValues: {
@@ -94,7 +94,7 @@ export const LoginForm: React.FC<PropsType> = (props) => {
             </form>
         </div>
     )
-}
+})
 
 // const LoginReduxForm = reduxForm({form: 'Login'}) (LoginForm)
 

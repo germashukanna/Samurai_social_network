@@ -7,7 +7,7 @@ import {AddMessageForm, ValuesType} from "../../Form/Form";
 
 
 
-const Dialogs: React.FC<DialogsPropsType> = (props) => {
+const Dialogs: React.FC<DialogsPropsType> = React.memo((props) => {
 
     const dialogsElements = props.dialogsPage.dialogsData.map(dialog => <DialogItem key={dialog.id} name={dialog.name}
                                                                                     id={dialog.id}/>);
@@ -31,7 +31,7 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
             </div>
         </div>
     );
-};
+});
 
 export default Dialogs;
 

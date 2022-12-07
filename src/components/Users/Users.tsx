@@ -15,7 +15,7 @@ type UsersPropsType = {
     onPageChanged: (page: number) => void
 }
 
-export let Users = (props: UsersPropsType) => {
+export let Users = React.memo((props: UsersPropsType) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
@@ -62,4 +62,4 @@ export let Users = (props: UsersPropsType) => {
             </div>
         </div>
     )
-}
+})

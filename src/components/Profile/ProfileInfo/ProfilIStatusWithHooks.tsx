@@ -6,7 +6,7 @@ type ProfileStatusType = {
     updateStatusTC: (status: string) => void
 }
 
-export const ProfilIStatusWithHook: React.FC<ProfileStatusType> = (props) => {
+export const ProfilIStatusWithHook: React.FC<ProfileStatusType> = React.memo((props) => {
 
     const [editMode, setEditMode] = useState<boolean>(false)
     const [status, setStatus] = useState<string>(props.status)
@@ -42,6 +42,6 @@ export const ProfilIStatusWithHook: React.FC<ProfileStatusType> = (props) => {
                 }
             </>
         )
-}
+})
 
 

@@ -5,7 +5,7 @@ import {myPostsPropsType} from "./MyPostsConteiner";
 import {AddMessageForm, ValuesType} from "../../../Form/Form";
 
 
-const MyPosts: React.FC<myPostsPropsType> = (props) => {
+const MyPosts: React.FC<myPostsPropsType> = React.memo((props) => {
 
 
     const postsElements = props.profilePage.posts.map(p => <Post key={p.id} message={p.post} likes={p.likesCount}/>)
@@ -26,5 +26,5 @@ const MyPosts: React.FC<myPostsPropsType> = (props) => {
             </div>
         </div>
     )
-}
+})
 export default MyPosts

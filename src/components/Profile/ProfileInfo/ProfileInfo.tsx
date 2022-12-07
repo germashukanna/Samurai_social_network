@@ -2,7 +2,7 @@ import React from 'react';
 import s from './ProfileInfo.module.css'
 import {Preloader} from "../../common/Preloader/Preloader";
 import {ProfileType} from "../../../redux/Profile-reducer";
-import ProfileStatus from "./ProfilIStatus";
+import {ProfilIStatusWithHook} from "./ProfilIStatusWithHooks";
 
 type ProfileInfo = {
     profile: null | ProfileType
@@ -10,7 +10,7 @@ type ProfileInfo = {
     updateStatusTC: (status: string) => void
 }
 
-const ProfileInfo: React.FC<ProfileInfo> = (props) => {
+const ProfileInfo: React.FC<ProfileInfo> = React.memo((props) => {
     if (!props.profile) {
         return <Preloader/>
     }
@@ -21,9 +21,9 @@ const ProfileInfo: React.FC<ProfileInfo> = (props) => {
             {/*  </div>*/}
             <div className={s.descriptionBlock}>
                 <img src={props.profile.photos.large}/>
-                <ProfileStatus status={props.status} updateStatusTC={props.updateStatusTC}/>
+                <ProfilIStatusWithHook status={props.status} updateStatusTC={props.updateStatusTC}/>
             </div>
         </div>
     )
-}
+})
 export default ProfileInfo

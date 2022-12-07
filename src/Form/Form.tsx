@@ -13,7 +13,7 @@ export type ValuesType = {
     removeButton?: boolean
 };
 
-export const AddMessageForm: React.FC<ValuesType> = (props) => {
+export const AddMessageForm: React.FC<ValuesType> = React.memo((props) => {
 
     let formik = useFormik({
         initialValues: {
@@ -58,4 +58,4 @@ export const AddMessageForm: React.FC<ValuesType> = (props) => {
         </form>
     )
 
-}
+})

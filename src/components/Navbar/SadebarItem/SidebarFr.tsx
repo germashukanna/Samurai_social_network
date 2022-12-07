@@ -7,7 +7,7 @@ type FriendsPropsType = {
     sidebarFr: Array<FriendsType>
 }
 
-export const SidebarFr: React.FC<FriendsPropsType> = (props) => {
+export const SidebarFr: React.FC<FriendsPropsType> = React.memo((props) => {
 
     let friendsList = props.sidebarFr.map((f) => {
         return <SidebarItem key={f.id} img={f.img} name={f.name}/>
@@ -22,5 +22,5 @@ export const SidebarFr: React.FC<FriendsPropsType> = (props) => {
 
         </div>
     );
-};
+})
 

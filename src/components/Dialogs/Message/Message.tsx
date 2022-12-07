@@ -5,13 +5,13 @@ type MessagePropsType = {
     message: string
 }
 
-const Message: React.FC<MessagePropsType> = (props) => {
+const Message: React.FC<MessagePropsType> = React.memo((props) => {
     return (
 
         <div className={s.message}>{props.message}</div>
 
     )
-}
+})
 
 
 

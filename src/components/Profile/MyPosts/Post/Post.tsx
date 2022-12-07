@@ -6,7 +6,7 @@ type PostPropsType = {
     likes: number,
 }
 
-const Post: React.FC<PostPropsType> = (props) => {
+const Post: React.FC<PostPropsType> = React.memo((props) => {
     return (
         <div className={s.items}>
         <img src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0-qGG3UEHF3EVHsnBJOPeHb2cuI1sJXeIEw&usqp=CAU'} alt={''}/>
@@ -15,5 +15,6 @@ const Post: React.FC<PostPropsType> = (props) => {
         </div>
 
 )
-}
+})
+
 export default Post
