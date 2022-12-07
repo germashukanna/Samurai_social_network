@@ -1,4 +1,4 @@
- import {AppDispatch, AppThunkType} from "./redux-store";
+import {AppDispatch, AppThunkType} from "./redux-store";
 import {getAuthUserData} from "./auth-reducer";
 
 
@@ -36,13 +36,10 @@ export const initialazedSuccssAC = () => {
 
 //Thunks
 export const initialazeAppTC = (): AppThunkType => {
-    return (dispatch: AppDispatch) => {
+    return async (dispatch: AppDispatch) => {
         let promise = dispatch(getAuthUserData());
-        Promise.all([promise])
-            .then(() => {
-                dispatch(initialazedSuccssAC())
-            })
-
+        await Promise.all([promise])
+        dispatch(initialazedSuccssAC())
     }
 }
 

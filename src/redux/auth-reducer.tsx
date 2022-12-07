@@ -40,35 +40,30 @@ export const setAuthUserDataAC = (id: number, email: string, login: string, isAu
 
 //Thunks
 export const getAuthUserData = (): AppThunkType => {
-    return (dispatch: AppDispatch) => {
-        getAPI.getAuthMe()
-            .then((data) => {
-                if (data.resultCode === 0) {
-                    let {id, login, email} = data.data;
-                    dispatch(setAuthUserDataAC(id, email, login, true));
-                }
-            });
+    return async (dispatch: AppDispatch) => {
+        let data = await getAPI.getAuthMe();
+        if (data.resultCode === 0) {
+            let {id, login, email} = data.data;
+            dispatch(setAuthUserDataAC(id, email, login, true));
+        }
+
     }
 }
 
 export const loginTC = (email: string, password: string, rememberMe: boolean): AppThunkType => {
-    return (dispatch: AppDispatch) => {
-        loginAPI.login(email, password, rememberMe)
-            .then((data) => {
-                if (data.resultCode === 0) {
-                    dispatch(getAuthUserData())
-                }
-            })
+    return async (dispatch: AppDispatch) => {
+        let data = await loginAPI.login(email, password, rememberMe)
+        if (data.resultCode === 0) {
+            dispatch(getAuthUserData())
+        }
     }
 }
 
 export const logOutTC = (): AppThunkType =>
-    (dispatch: AppDispatch) => {
-        loginAPI.loginOut()
-            .then((data) => {
-                if (data.resultCode === 0) {
-                    dispatch(setAuthUserDataAC(0, '', '', false))
-                }
-            })
+    async (dispatch: AppDispatch) => {
+        let data = await loginAPI.loginOut()
+        if (data.resultCode === 0) {
+            dispatch(setAuthUserDataAC(0, '', '', false))
+        }
     }
 
