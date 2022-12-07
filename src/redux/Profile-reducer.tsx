@@ -2,6 +2,7 @@ import {getAPI, profileAPI} from "../Api/api";
 import {Dispatch} from "redux";
 
 const ADD_POST = 'ADD-POST';
+const DELETE_POST = 'DELETE_POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 
@@ -10,14 +11,12 @@ export type PostsType = {
     post: string,
     likesCount: number,
 }
-
 export type ProfilePageType = {
     posts: Array<PostsType>,
     newPostText: string,
     profile: null | ProfileType,
     status: string
 }
-
 export type ProfileType = {
     userId: number
     aboutMe: string
@@ -30,8 +29,7 @@ export type ProfileType = {
         large: string
     }
 }
-
-type ContactsType = {
+export type ContactsType = {
     github: string
     vk: string
     facebook: string
@@ -45,6 +43,7 @@ type ContactsType = {
 export type ActionsProfileTypes = ReturnType<typeof addPostActionCreactor>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setStatusAC>
+    | ReturnType<typeof deletePostActionCreactor>
 
 const initialState = {
     posts: [
@@ -72,6 +71,11 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsPr
                 newPostText: ''
             };
         }
+        case DELETE_POST:
+            return {
+                ...state,
+                posts: state.posts.filter(p => p.id != action.id)
+            }
         case SET_USER_PROFILE:
             return {
                 ...state,
@@ -89,6 +93,7 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsPr
 }
 
 export const addPostActionCreactor = (message: string) => ({type: ADD_POST, message} as const)
+export const deletePostActionCreactor = (id: number) => ({type: DELETE_POST, id} as const)
 export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile} as const)
 export const setStatusAC = (status: string) => ({type: SET_STATUS, status} as const)
 
