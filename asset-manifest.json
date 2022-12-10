@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Samurai_social_network/static/css/main.355559da.css",
+    "main.js": "/Samurai_social_network/static/js/main.16199460.js",
+    "static/media/userFhoto.jpg": "/Samurai_social_network/static/media/userFhoto.f4dc0b8ad6137734ba12.jpg",
+    "static/media/preloader.svg": "/Samurai_social_network/static/media/preloader.fba1f17c05ff4e1aa8d40bd394f8aa1f.svg",
+    "index.html": "/Samurai_social_network/index.html",
+    "main.355559da.css.map": "/Samurai_social_network/static/css/main.355559da.css.map",
+    "main.16199460.js.map": "/Samurai_social_network/static/js/main.16199460.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.355559da.css",
+    "static/js/main.16199460.js"
+  ]
+}
