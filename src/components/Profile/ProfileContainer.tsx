@@ -34,15 +34,15 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
             //     this.props.history.push('/login');
             // }
         }
-        this.props.getUserProfile(userId);
-        this.props.setStatusTC(userId)
-
+            this.props.getUserProfile(userId);
+            this.props.setStatusTC(userId)
     }
 
     render() {
         return (
             <div>
-                <Profile {...this.props} profile={this.props.profile}
+                <Profile {...this.props}
+                         profile={this.props.profile}
                          status={this.props.status}
                          updateStatusTC={this.props.updateStatusTC}
                 />
@@ -50,6 +50,7 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
         )
     }
 }
+
 //
 // let WithUrlDataContainerComponent = withAuthRedirect(ProfileContainer)
 

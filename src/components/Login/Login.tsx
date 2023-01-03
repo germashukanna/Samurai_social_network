@@ -86,7 +86,7 @@ export const LoginForm: React.FC<PropsType> = React.memo((props) => {
                                                                                    onChange={formik.handleChange}
                                                                                    checked={formik.values.rememberMe}
                                                                                    name='rememberMe'/>}/>
-                        <Button type={'submit'} variant={'outlined'} color={'secondary'} size={'medium'}>
+                        <Button type={'submit'} variant={'outlined'} color={'secondary'} size={'small'}>
                             Login
                         </Button>
                     </FormGroup>

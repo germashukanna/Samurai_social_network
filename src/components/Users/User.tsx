@@ -3,6 +3,7 @@ import userPhoto from "../../assets/images/userFhoto.jpg";
 import React from "react";
 import {NavLink} from "react-router-dom";
 import {UserType} from "../../redux/Users-reducer";
+import Button from "@mui/material/Button/Button";
 
 
 type UsersPropsType = {
@@ -25,15 +26,19 @@ export let User: React.FC<UsersPropsType> = React.memo(({user, followingInProgre
                     </div>
                     <div>
                         {user.followed
-                            ? <button disabled={followingInProgress.some((id) => id === user.id)}
+                            ? <Button variant={'outlined'} color={'secondary'} size={'small'}
+                                      sx={{ mt: 0.5, mb: 0.5 }}
+                                disabled={followingInProgress.some((id) => id === user.id)}
                                       onClick={() => {
                                           unfollow(user.id);
 
-                                      }}>Unfollow</button>
-                            : <button disabled={followingInProgress.some((id) => id === user.id)}
+                                      }}>Unfollow</Button>
+                            : <Button variant={'outlined'} color={'secondary'} size={'small'}
+                                      sx={{ mt: 0.5, mb: 0.5 }}
+                                disabled={followingInProgress.some((id) => id === user.id)}
                                       onClick={() => {
                                           follow(user.id);
-                                      }}>follow</button>}
+                                      }}>follow</Button>}
                     </div>
                 </span>
                 <span>

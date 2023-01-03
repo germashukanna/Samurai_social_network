@@ -29,6 +29,7 @@ type UserPageType = {
     currentPage: number
     isFetching: boolean
     followingInProgress: Array<number>
+    portionSize: number
 }
 export const initialState: UserPageType = {
     users: [],
@@ -37,6 +38,7 @@ export const initialState: UserPageType = {
     currentPage: 1,
     isFetching: false,
     followingInProgress: [],
+    portionSize: 10
 }
 export type ActionsUsersTypes = ReturnType<typeof followSuccess>
     | ReturnType<typeof unfollowSuccess> | ReturnType<typeof setUsers>

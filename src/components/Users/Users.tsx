@@ -12,6 +12,7 @@ type UsersPropsType = {
     unfollow: (userId: number) => void
     follow: (userId: number) => void
     onPageChanged: (page: number) => void
+    portionSize: number
 }
 
 export let Users = React.memo((props: UsersPropsType) => {
@@ -19,7 +20,8 @@ export let Users = React.memo((props: UsersPropsType) => {
     return (
         <div>
             <Paginator currentPage={props.currentPage} onPageChanged={props.onPageChanged}
-                       totalUsersCount={props.totalUsersCount} pageSize={props.pageSize}/>
+                       totalItemsCount={props.totalUsersCount} pageSize={props.pageSize}
+                       portionSize={props.portionSize}/>
             <div>
                 {props.users.map(u => <User key={u.id} follow={props.follow}
                                             unfollow={props.unfollow}

@@ -15,7 +15,7 @@ import {
     getCurrentPage,
     getFollowingInProgress,
     getIsFetching,
-    getPageSize, getPageUsers,
+    getPageSize, getPageUsers, getPortionSize,
     getTotalUsersCount
 } from "../../redux/users-selectors";
 
@@ -25,7 +25,8 @@ type mapStatePropsType = {
     totalUsersCount: number,
     currentPage: number,
     isFetching: boolean,
-    followingInProgress: Array<number>
+    followingInProgress: Array<number>,
+    portionSize: number
 }
 
 type MapDispatchToProps = {
@@ -65,7 +66,7 @@ class UsersContainer extends React.Component<UsersPropsType> {
                    unfollow={this.props.unFollow}
                    follow={this.props.follow}
                    onPageChanged={this.onPageChanged}
-
+                   portionSize={this.props.portionSize}
             />
 
         </>
@@ -81,10 +82,10 @@ let mapStateToProps = (state: AppStateType): mapStatePropsType => {
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
-        followingInProgress: getFollowingInProgress(state)
+        followingInProgress: getFollowingInProgress(state),
+        portionSize: getPortionSize(state)
     }
 }
-
 
 
 // let whithRedirect = withAuthRedirect(UsersContainer)
