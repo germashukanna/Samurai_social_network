@@ -7,7 +7,9 @@ const state: ProfilePageType = {
     ],
     newPostText: 'it-kamasutra.com',
     profile: null,
-    status: ''
+    status: '',
+    isOwner: false,
+
 };
 
 test('new post shold be added', () => {

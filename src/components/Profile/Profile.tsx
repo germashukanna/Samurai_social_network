@@ -5,9 +5,11 @@ import {ProfilePropsType} from "./ProfileContainer";
 
 
 const Profile: React.FC<ProfilePropsType> = React.memo((props) => {
+
     return (
     <div>
-        <ProfileInfo profile={props.profile}  status={props.status} updateStatusTC={props.updateStatusTC}/>
+        <ProfileInfo profile={props.profile}  status={props.status} updateStatusTC={props.updateStatusTC}
+                     isOwner={props.isOwner} savePhoto={props.savePhoto}/>
         <MyPostsContainer />
     </div>
     )
