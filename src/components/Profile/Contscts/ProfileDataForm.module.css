@@ -1,0 +1,9 @@
+.formControl{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.contacts{
+    padding-left: 10px;
+}

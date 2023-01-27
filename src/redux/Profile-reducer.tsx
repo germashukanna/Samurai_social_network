@@ -1,4 +1,4 @@
-import {getAPI, PostsType, profileAPI, updatePhotoResponseType} from "../Api/api";
+import {getAPI, getProfileResponseType, PostsType, profileAPI, updatePhotoResponseType} from "../Api/api";
 import {Dispatch} from "redux";
 
 const Profile_ADD_POST = 'Profile/ADD-POST';
@@ -6,6 +6,7 @@ const Profile_DELETE_POST = 'Profile/DELETE_POST';
 const Profile_SET_USER_PROFILE = 'Profile/SET_USER_PROFILE';
 const Profile_SET_STATUS = 'Profile/SET_STATUS';
 const Profile_SAVE_PHOTOS = 'Profile/SAVE_PHOTOS';
+const SET_USER_PROFILE = 'Profile/USER_PROFILE';
 
 
 export type ProfilePageType = {
@@ -44,6 +45,7 @@ export type ActionsProfileTypes = ReturnType<typeof addPostActionCreactor>
     | ReturnType<typeof setStatusAC>
     | ReturnType<typeof deletePostActionCreactor>
     | ReturnType<typeof savePhotoSuccessAC>
+    | ReturnType<typeof setUserProfileAC>
 
 const initialState = {
     posts: [
@@ -102,6 +104,10 @@ export const deletePostActionCreactor = (id: number) => ({type: Profile_DELETE_P
 export const setUserProfile = (profile: ProfileType) => ({type: Profile_SET_USER_PROFILE, profile} as const)
 export const setStatusAC = (status: string) => ({type: Profile_SET_STATUS, status} as const)
 export const savePhotoSuccessAC = (photos: updatePhotoResponseType) => ({type: Profile_SAVE_PHOTOS, photos} as const)
+export const setUserProfileAC = (profile: getProfileResponseType) => ({
+    type: SET_USER_PROFILE,
+    profile
+} as const)
 
 export const getUserProfile = (userId: number) => async (dispatch: Dispatch<ActionsProfileTypes>) => {
     const data = await getAPI.getProfile(userId)
@@ -125,6 +131,15 @@ export const savePhoto = (photoFile: File) => async (dispatch: Dispatch<ActionsP
        dispatch(savePhotoSuccessAC(res.data.data))
     }
 }
+export const saveProfile = (profile: getProfileResponseType) => async (dispatch: Dispatch<ActionsProfileTypes>, getState: any) => {
+    const userId = getState().auth.id;
+    const res = await profileAPI.saveProfile(profile)
+    if (res.data.resultCode === 0) {
+       dispatch(getUserProfile(userId))
+    }
+}
+
+
 
 
 export default profileReducer

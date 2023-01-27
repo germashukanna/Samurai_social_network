@@ -52,10 +52,13 @@ export const profileAPI = {
         const formData = new FormData();
         formData.append('image', photoFile)
         return instance.put<ResponseApiType<updatePhotoResponseType>>(`profile/photo`, formData, {
-            headers:{
+            headers: {
                 'Content-Type': 'multipart-from-data'
             }
         })
+    },
+    saveProfile(photoFile: getProfileResponseType) {
+        return instance.put<ResponseApiType<ResponseApiType>>(`profile`, photoFile)
     },
 }
 
@@ -99,6 +102,28 @@ export type ResponseApiType<D = {}> = {
 
 export type updatePhotoResponseType = {
     photos: {
+        small: string
+        large: string
+    }
+}
+
+export type getProfileResponseType = {
+    userId?: number
+    aboutMe: string
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    contacts?: {
+        github?: string
+        vk?: string
+        facebook?: string
+        instagram?: string
+        twitter?: string
+        website?: string
+        youtube?: string
+        mainLink?: string
+    }
+    photos?: {
         small: string
         large: string
     }
