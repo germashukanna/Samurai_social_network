@@ -16,6 +16,7 @@ interface Values {
     email: string
     password: string
     rememberMe: boolean
+    captchaUrl: string
 }
 
 type PropsType = {
@@ -27,6 +28,7 @@ export type FormDataType = {
     email: string
     password: string
     rememberMe: boolean
+    captchaUrl: string
 }
 
 type FormikErrorType = {
@@ -37,11 +39,14 @@ type FormikErrorType = {
 
 export const LoginForm: React.FC<PropsType> = React.memo((props) => {
 
+    const captchaUtl = useAppSelector((state: AppStateType) => state.auth.captchaUrl)
+
     const formik = useFormik({
         initialValues: {
             email: '',
             password: '',
-            rememberMe: false
+            rememberMe: false,
+            captchaUrl: ''
         },
         validate: (values) => {
             const errors: FormikErrorType = {}
@@ -86,17 +91,22 @@ export const LoginForm: React.FC<PropsType> = React.memo((props) => {
                                                                                    onChange={formik.handleChange}
                                                                                    checked={formik.values.rememberMe}
                                                                                    name='rememberMe'/>}/>
+                        {captchaUtl && <img src={captchaUtl}/>}
+                        {captchaUtl &&
+                            <TextField label="CaptchaUrl" margin="normal" {...formik.getFieldProps('captchaUrl')}
+                                       onBlur={formik.handleBlur}
+                                       size={'small'} color={'secondary'}
+                            />}
                         <Button type={'submit'} variant={'outlined'} color={'secondary'} size={'small'}>
                             Login
                         </Button>
+
                     </FormGroup>
                 </FormControl>
             </form>
         </div>
     )
 })
-
-// const LoginReduxForm = reduxForm({form: 'Login'}) (LoginForm)
 
 export const Login = () => {
 
@@ -105,7 +115,7 @@ export const Login = () => {
     const dispatch = useAppDispatch()
 
     const onHandlerSubmit = (formData: FormDataType) => {
-        dispatch(loginTC(formData.email, formData.password, formData.rememberMe));
+        dispatch(loginTC(formData.email, formData.password, formData.rememberMe, formData.captchaUrl));
     }
 
     const onClickLogout = () => {

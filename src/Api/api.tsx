@@ -63,14 +63,22 @@ export const profileAPI = {
 }
 
 export const loginAPI = {
-    login(email: string, password: string, rememberMe: boolean) {
-        return instance.post<ResponseType<{ userId: number }>>(`auth/login`, {email, password, rememberMe})
+    login(email: string, password: string, rememberMe: boolean, captchaUrl: string) {
+        return instance.post<ResponseType<{ userId: number }>>(`auth/login`, {email, password, rememberMe, captchaUrl})
             .then(response => response.data)
     },
     loginOut() {
         return instance.delete(`auth/login`)
             .then(response => response.data)
     },
+}
+
+export const securityAPI = {
+    getCaptchaUtl() {
+        return instance.get(`security/get-captcha-url`)
+            .then(response => response.data)
+    },
+
 }
 
 export type PostsType = {
@@ -113,13 +121,13 @@ export type getProfileResponseType = {
     lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string
-    contacts?: {
-        github?: string
+    contacts: {
+        github: string
         vk?: string
-        facebook?: string
-        instagram?: string
+        facebook: string
+        instagram: string
         twitter?: string
-        website?: string
+        website: string
         youtube?: string
         mainLink?: string
     }
@@ -128,6 +136,8 @@ export type getProfileResponseType = {
         large: string
     }
 }
+
+
 
 
 

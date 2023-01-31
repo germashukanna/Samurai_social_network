@@ -1,4 +1,4 @@
-import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import s from './ProfileInfo.module.css'
 import {Preloader} from "../../common/Preloader/Preloader";
 import {ProfileType, savePhoto} from "../../../redux/Profile-reducer";
@@ -12,7 +12,7 @@ import {Contacts} from "../Contscts/Contscts";
 type ProfileInfo = {
     profile: null | ProfileType
     status: string
-    updateStatusTC: (status: string) => void
+    updateStatusTC: (status: string) => any
     isOwner: boolean
     savePhoto: any
     contactTitle?: string,

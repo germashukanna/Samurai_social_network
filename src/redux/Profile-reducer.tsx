@@ -23,21 +23,20 @@ export type ProfileType = {
     lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string
-    contacts: ContactsType
+    contacts: {
+        github: string
+        vk?: string
+        facebook: string
+        instagram: string
+        twitter?: string
+        website: string
+        youtube?: string
+        mainLink?: string
+    }
     photos: {
         small: string
         large: string
     }
-}
-export type ContactsType = {
-    github: string
-    vk: string
-    facebook: string
-    instagram: string
-    twitter: string
-    website: string
-    youtube: string
-    mainLink: string
 }
 
 export type ActionsProfileTypes = ReturnType<typeof addPostActionCreactor>
@@ -58,7 +57,13 @@ const initialState = {
     isOwner: false,
     photos: {
         small: '',
-        large: ''
+        large: '',
+    },
+    contacts: {
+        github: '',
+        facebook: '',
+        instagram: '',
+        website: '',
     }
 };
 
@@ -92,8 +97,8 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsPr
                 ...state,
                 status: action.status
             }
-            case Profile_SAVE_PHOTOS:
-                return {...state, profile: {...state.profile, photos: action.photos}}
+        case Profile_SAVE_PHOTOS:
+            return {...state, profile: {...state.profile, photos: action.photos}}
         default:
             return state;
     }
@@ -128,18 +133,18 @@ export const updateStatusTC = (status: string) => async (dispatch: Dispatch<Acti
 export const savePhoto = (photoFile: File) => async (dispatch: Dispatch<ActionsProfileTypes>) => {
     const res = await profileAPI.savePhoto(photoFile)
     if (res.data.resultCode === 0) {
-       dispatch(savePhotoSuccessAC(res.data.data))
+        dispatch(savePhotoSuccessAC(res.data.data))
     }
 }
 export const saveProfile = (profile: getProfileResponseType) => async (dispatch: Dispatch<ActionsProfileTypes>, getState: any) => {
     const userId = getState().auth.id;
     const res = await profileAPI.saveProfile(profile)
     if (res.data.resultCode === 0) {
-       dispatch(getUserProfile(userId))
+        dispatch(getUserProfile(userId))
+    } else {
+
     }
 }
-
-
 
 
 export default profileReducer

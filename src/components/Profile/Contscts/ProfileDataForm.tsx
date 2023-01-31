@@ -39,6 +39,7 @@ export const ProfileDataForm: React.FC<ProfileDataFormPropsType> = (props) => {
         },
         onSubmit: (values: getProfileResponseType) => {
             dispatch(saveProfile(values))
+            props.notToEditMode
         }
     })
 
@@ -50,11 +51,6 @@ export const ProfileDataForm: React.FC<ProfileDataFormPropsType> = (props) => {
                         <Button type={'submit'} variant={'outlined'} color={'secondary'} size={'medium'}
                         >
                             save
-                        </Button>
-                        <Button variant={'outlined'} color={'secondary'} size={'medium'}
-                                onClick={props.notToEditMode}
-                        >
-                            return
                         </Button>
                         <Box>
                 <textarea
@@ -87,31 +83,31 @@ export const ProfileDataForm: React.FC<ProfileDataFormPropsType> = (props) => {
                             <b>Contacts:</b>: <div
                             className={s.contacts}>
                             <div>
-                                <b>{props.profile.contacts?.github}Github: <textarea
-                                    {...formik.getFieldProps('github')}
+                                <b>Github: <textarea
+                                    {...formik.getFieldProps('contacts.github')}
                                     placeholder="github" onBlur={formik.handleBlur}
+                                    color="secondary" name='contacts.github'
+                                /></b>
+                            </div>
+                            <div>
+                                <b>Facebook: <textarea
+                                    {...formik.getFieldProps('contacts.facebook')}
+                                    placeholder="facebook" onBlur={formik.handleBlur} name='contacts.facebook'
                                     color="secondary"
                                 /></b>
                             </div>
                             <div>
-                                <b>{props.profile.contacts?.facebook}Facebook: <textarea
-                                    {...formik.getFieldProps('facebook')}
-                                    placeholder="facebook" onBlur={formik.handleBlur}
-                                    color="secondary"
-                                /></b>
-                            </div>
-                            <div>
-                                <b>{props.profile.contacts?.instagram}Instagram: <textarea
-                                    {...formik.getFieldProps('instagram')}
+                                <b>Instagram: <textarea
+                                    {...formik.getFieldProps('contacts.instagram')}
                                     placeholder="instagram" onBlur={formik.handleBlur}
-                                    color="secondary"
+                                    color="secondary" name='contacts.instagram'
                                 /></b>
                             </div>
                             <div>
-                                <b>{props.profile.contacts?.website}Website: <textarea
-                                    {...formik.getFieldProps('website')}
+                                <b>Website: <textarea
+                                    {...formik.getFieldProps('contacts.website')}
                                     placeholder="github" onBlur={formik.handleBlur}
-                                    color="website"
+                                    color="secondary" name='contacts.website'
                                 /></b>
                             </div>
                         </div>

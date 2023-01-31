@@ -18,9 +18,9 @@ type mapStateToPropsType = {
 }
 
 type mapDispatchToPropsType = {
-    getUserProfile: (userId: number) => void
-    setStatusTC: (userId: number) => void
-    updateStatusTC: (status: string) => void
+    getUserProfile: (userId: number) => any
+    setStatusTC: (userId: number) => any
+    updateStatusTC: (status: string) => any
 }
 
 export type ProfilePropsType = mapStateToPropsType & mapDispatchToPropsType
