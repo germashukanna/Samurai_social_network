@@ -1,0 +1,13 @@
+.loginFormContainer{
+    background-color: #252836;
+}
+
+.loginContainer{
+    background-color: #252836;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    min-height: 500px;
+    padding-top: 100px;
+    color: white;
+}

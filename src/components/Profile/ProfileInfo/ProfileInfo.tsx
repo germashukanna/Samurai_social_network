@@ -5,9 +5,9 @@ import {ProfileType, savePhoto} from "../../../redux/Profile-reducer";
 import {ProfilIStatusWithHook} from "./ProfilIStatusWithHooks";
 import userPhoto from "../../../assets/images/userFhoto.jpg";
 import {useAppDispatch} from "../../../redux/Hooks";
-import {ProfileDataForm} from "../Contscts/ProfileDataForm";
-import {ProfileData} from "../Contscts/ProfileData";
-import {Contacts} from "../Contscts/Contscts";
+import {ProfileDataForm} from "../Contacts/ProfileDataForm";
+import {ProfileData} from "../Contacts/ProfileData";
+import {Contacts} from "../Contacts/Contscts";
 
 type ProfileInfo = {
     profile: null | ProfileType
@@ -32,13 +32,15 @@ const ProfileInfo: React.FC<ProfileInfo> = React.memo((props) => {
         }
     }
 
+
     return (
         <div>
             <div className={s.descriptionBlock}>
                 <img src={props.profile.photos.large || userPhoto} className={s.mainPhoto}/>
-                {props.isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
+                {props.isOwner && <input type={'file'} onChange={onMainPhotoSelected} className={s.inputTypeFile}/>}
                 {editMode
                     ? <ProfileDataForm notToEditMode={() => {
+                        // @ts-ignore
                         setEditMode(false)}} profile={props.profile}/>
                     : <ProfileData profile={props.profile} isOwner={props.isOwner} goToEditMode={() => {
                         setEditMode(true)}}/>

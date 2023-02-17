@@ -1,4 +1,4 @@
-import {getAPI, loginAPI, securityAPI} from "../Api/api";
+import {getAPI, loginAPI, ResultCodeEnumType, securityAPI} from "../Api/api";
 import {AppDispatch, AppThunkType} from "./redux-store";
 
 
@@ -54,10 +54,10 @@ export const getCaptchaUtlAC = (captchaUrl: string | null) => {
 export const getAuthUserData = (): AppThunkType => {
     return async (dispatch: AppDispatch) => {
         let data = await getAPI.getAuthMe();
-        if (data.resultCode === 0) {
+        if (data.resultCode === ResultCodeEnumType.Success) {
             let {id, login, email} = data.data;
             dispatch(setAuthUserDataAC(id, email, login, true));
-        } else if (data.resultCode === 10) {
+        } else if (data.resultCode === ResultCodeEnumType.CaptchaIsRequired) {
             dispatch(getCaptchaUtl())
         }
     }
@@ -66,9 +66,9 @@ export const getAuthUserData = (): AppThunkType => {
 export const loginTC = (email: string, password: string, rememberMe: boolean, captchaUrl: string): AppThunkType => {
     return async (dispatch: AppDispatch) => {
         let data = await loginAPI.login(email, password, rememberMe, captchaUrl)
-        if (data.resultCode === 0) {
+        if (data.resultCode === ResultCodeEnumType.Success) {
             dispatch(getAuthUserData())
-        } else if (data.resultCode === 10) {
+        } else if (data.resultCode === ResultCodeEnumType.CaptchaIsRequired) {
             dispatch(getCaptchaUtl())
         }
     }
@@ -77,7 +77,7 @@ export const loginTC = (email: string, password: string, rememberMe: boolean, ca
 export const logOutTC = (): AppThunkType =>
     async (dispatch: AppDispatch) => {
         let data = await loginAPI.loginOut()
-        if (data.resultCode === 0) {
+        if (data.resultCode === ResultCodeEnumType.Success) {
             dispatch(setAuthUserDataAC(0, '', '', false))
         }
     }

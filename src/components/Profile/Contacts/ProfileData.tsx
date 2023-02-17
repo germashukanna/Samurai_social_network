@@ -1,5 +1,7 @@
 import React from "react";
 import {ProfileType} from "../../../redux/Profile-reducer";
+import {CustomButton} from "../../../common/Button/Button";
+import s from './ProfileData.module.css'
 
 
 type ProfileDataPropsType = {
@@ -11,8 +13,8 @@ type ProfileDataPropsType = {
 export const ProfileData: React.FC<ProfileDataPropsType> = (props) => {
     return (
         <>
-            {props.isOwner && <div>
-                <button onClick={props.goToEditMode}>edit</button>
+            {props.isOwner && <div className={s.editProfileButton}>
+                <CustomButton children={'edit profile'} onClick={props.goToEditMode}/>
             </div>}
             <h2>{props.profile.fullName}</h2>
             <p>

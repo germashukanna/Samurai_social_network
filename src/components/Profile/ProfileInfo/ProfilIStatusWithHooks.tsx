@@ -1,6 +1,5 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import {useAppDispatch} from "../../../redux/Hooks";
-
+import s from './ProfilIStatusWithHook.module.css'
 
 type ProfileStatusWithHooksPropsType = {
     status: string
@@ -35,8 +34,8 @@ export const ProfilIStatusWithHook =(props:ProfileStatusWithHooksPropsType)=>  {
 
 
     return (
-        <div>
-            <h3>статус пользователя:</h3>
+        <div className={s.ProfilIStatusWithHook}>
+            <h3>User status:</h3>
             {/*если у нас false отображаем эту div*/}
             {!editMode && // если не эдит мод покажи спан
                 <div>

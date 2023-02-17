@@ -1,4 +1,11 @@
-import {getAPI, getProfileResponseType, PostsType, profileAPI, updatePhotoResponseType} from "../Api/api";
+import {
+    getAPI,
+    getProfileResponseType,
+    PostsType,
+    profileAPI,
+    ResultCodeEnumType,
+    updatePhotoResponseType
+} from "../Api/api";
 import {Dispatch} from "redux";
 
 const Profile_ADD_POST = 'Profile/ADD-POST';
@@ -16,6 +23,12 @@ export type ProfilePageType = {
     status: string,
     isOwner: boolean,
 }
+export type PhotosType = {
+    small: string | null
+    large: string | null
+}
+
+
 
 export type ProfileType = {
     userId: number
@@ -33,10 +46,7 @@ export type ProfileType = {
         youtube?: string
         mainLink?: string
     }
-    photos: {
-        small: string
-        large: string
-    }
+    photos: PhotosType
 }
 
 export type ActionsProfileTypes = ReturnType<typeof addPostActionCreactor>
@@ -52,13 +62,9 @@ const initialState = {
         {id: 2, post: 'It\'s my first post ', likesCount: 11},
     ],
     newPostText: 'it-kamasutra',
-    profile: null,
+    profile: null as ProfileType | null,
     status: '',
     isOwner: false,
-    photos: {
-        small: '',
-        large: '',
-    },
     contacts: {
         github: '',
         facebook: '',
@@ -98,7 +104,7 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsPr
                 status: action.status
             }
         case Profile_SAVE_PHOTOS:
-            return {...state, profile: {...state.profile, photos: action.photos}}
+            return {...state, profile: {...state.profile, photos: action.photos} as ProfileType}
         default:
             return state;
     }
@@ -108,7 +114,7 @@ export const addPostActionCreactor = (message: string) => ({type: Profile_ADD_PO
 export const deletePostActionCreactor = (id: number) => ({type: Profile_DELETE_POST, id} as const)
 export const setUserProfile = (profile: ProfileType) => ({type: Profile_SET_USER_PROFILE, profile} as const)
 export const setStatusAC = (status: string) => ({type: Profile_SET_STATUS, status} as const)
-export const savePhotoSuccessAC = (photos: updatePhotoResponseType) => ({type: Profile_SAVE_PHOTOS, photos} as const)
+export const savePhotoSuccessAC = (photos: PhotosType) => ({type: Profile_SAVE_PHOTOS, photos} as const)
 export const setUserProfileAC = (profile: getProfileResponseType) => ({
     type: SET_USER_PROFILE,
     profile
@@ -126,20 +132,21 @@ export const setStatusTC = (userId: number) => async (dispatch: Dispatch<Actions
 
 export const updateStatusTC = (status: string) => async (dispatch: Dispatch<ActionsProfileTypes>) => {
     const res = await profileAPI.updateStatus(status)
-    if (res.data.resultCode === 0) {
+    if (res.data.resultCode === ResultCodeEnumType.Success) {
         dispatch(setStatusAC(status))
     }
 }
 export const savePhoto = (photoFile: File) => async (dispatch: Dispatch<ActionsProfileTypes>) => {
     const res = await profileAPI.savePhoto(photoFile)
-    if (res.data.resultCode === 0) {
+    if (res.data.resultCode === ResultCodeEnumType.Success) {
         dispatch(savePhotoSuccessAC(res.data.data))
     }
 }
 export const saveProfile = (profile: getProfileResponseType) => async (dispatch: Dispatch<ActionsProfileTypes>, getState: any) => {
     const userId = getState().auth.id;
     const res = await profileAPI.saveProfile(profile)
-    if (res.data.resultCode === 0) {
+    if (res.data.resultCode === ResultCodeEnumType.Success) {
+        // @ts-ignore
         dispatch(getUserProfile(userId))
     } else {
 

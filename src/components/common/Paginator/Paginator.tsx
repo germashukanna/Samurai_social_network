@@ -5,7 +5,6 @@ import Button from "@mui/material/Button/Button";
 
 
 type PaginatorPropsType = {
-    //totalUsersCount: number
     pageSize: number
     currentPage: number
     onPageChanged: (page: number) => void

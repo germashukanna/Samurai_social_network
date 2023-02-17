@@ -1,7 +1,33 @@
-.descriptionBlock{
-    padding: 10px;
+.descriptionBlock {
+    padding: 20px 40px;
+    background-image: url(https://classic.armadon-theme.com/wp-content/uploads/sites/11/2021/04/section-cta.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    background-attachment: scroll;
+    border-top-color: #eceeef;
+    border-top-style: solid;
+    border-top-width: 0;
+    border-bottom-color: #eceeef;
+    border-bottom-style: solid;
+    border-bottom-width: 0;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-size: 20px;
 }
 
-.mainPhoto{
-    max-width: 100px;
+.mainPhoto {
+    max-width: 150px;
+    border-radius: 50%;
+}
+
+.inputTypeFile {
+    /*background-color: #6757D6;*/
+    /*color: white;*/
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    /*position: relative;*/
+    /*width: 150px;*/
+    /*height: 30px;*/
+    font-size: 16px;
+    font-weight: 600;
 }

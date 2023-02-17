@@ -9,12 +9,14 @@ type PostPropsType = {
 const Post: React.FC<PostPropsType> = React.memo((props) => {
     return (
         <div className={s.items}>
-        <img src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0-qGG3UEHF3EVHsnBJOPeHb2cuI1sJXeIEw&usqp=CAU'} alt={''}/>
-            {props.message}
-          <span className={s.like}>{props.likes}</span>
+            <img
+                src={'https://classic.armadon-theme.com/wp-content/uploads/sites/11/avatars/6/6-bpfull.jpg'}
+                alt={''}/>
+            <span className={s.messagePost}>{props.message}</span>
+            <span className={s.like}>{props.likes}</span>
         </div>
 
-)
+    )
 })
 
 export default Post

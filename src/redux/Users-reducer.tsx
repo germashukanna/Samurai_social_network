@@ -1,4 +1,4 @@
-import {getAPI} from "../Api/api";
+import {getAPI, ResultCodeEnumType} from "../Api/api";
 import {Dispatch} from "redux";
 
 const FOLLOW = "Users/FOLLOW"
@@ -126,7 +126,7 @@ const followUnFollow = async (dispatch: Dispatch<ActionsUsersTypes>, id: number,
                               actionCreator: (id: number) => ReturnType<typeof followSuccess> | ReturnType<typeof unfollowSuccess>) => {
     dispatch(toggleFollowingProgress(true, id));
     const data = await apiMethod(id)
-    if (data.resultCode === 0) {
+    if (data.resultCode === ResultCodeEnumType.Success) {
         dispatch(actionCreator(id));
     }
     dispatch(toggleFollowingProgress(false, id));

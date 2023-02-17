@@ -1,6 +1,8 @@
 import React from "react";
 import {useFormik} from "formik";
 import Button from "@mui/material/Button/Button";
+import {TextField} from "@mui/material";
+import {CustomButton} from "../common/Button/Button";
 
 
 type FormikErrorsType = {
@@ -33,26 +35,25 @@ export const AddMessageForm: React.FC<ValuesType> = React.memo((props) => {
             if (props.callback) {
                 props.callback(values)
             }
+            formik.resetForm();
         }
     })
 
     return (
         <form onSubmit={formik.handleSubmit}>
             <div>
-                <textarea
+                <TextField
                     {...formik.getFieldProps('message')}
                     placeholder="Enter yore message." onBlur={formik.handleBlur}
-                    color="secondary"
+                    color="info" variant={'outlined'}
+                    sx={{mb: '10px'}}
                 />
                 {formik.errors.message
                     && formik.touched.message
-                    && <div style={{color: 'red'}}>{formik.errors.message}</div>}
+                    && <div style={{color: '#DF204D'}}>{formik.errors.message}</div>}
             </div>
             <div>
-                <Button type={'submit'} variant={'outlined'} color={'secondary'} size={'medium'}
-                >
-                    Send
-                </Button>
+                <CustomButton children={'Send'}/>
                 {props.removeButton ? <button type="button">Remove</button> : ''}
             </div>
         </form>

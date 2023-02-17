@@ -1,10 +1,21 @@
-.items{
-
+.items {
+    padding: 5px 5px;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-size: 20px;
 }
 
-.items img{
+.items img {
     height: 70px;
     width: 70px;
     border-radius: 50%;
+
+}
+
+.like {
+    padding: 5px 5px;
+}
+
+.messagePost {
+    padding: 5px 5px;
 
 }

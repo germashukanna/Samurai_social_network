@@ -1,14 +1,35 @@
-.header{
+.header {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
     grid-area: h;
-    background-color: #bd9ee0;
-
+    /*background-color: rgba(27, 26, 35, .9);*/
+    background-color: black;
+    min-height: 84px;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
 }
 
-.header img{
-    width: 30px;
-
+.headerNavbar{
+    display: flex;
+}
+.header img {
+    margin: auto 38px;
+    width: 48px;
+    height: 60px;
 }
 
-.loginBlock{
+.loginBlock {
     float: right;
+    margin: auto 38px;
+    color: white;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
 }
+.NavLink{
+    text-decoration: none;
+    color: white;
+}
+

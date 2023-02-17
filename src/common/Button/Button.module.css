@@ -1,0 +1,54 @@
+.classNameButton {
+    background-color: #6757D6;
+    color: white;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    position: relative;
+    width: 150px;
+    height: 30px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.classNameButton:hover {
+    opacity: 90%;
+}
+
+.classNameButton:active {
+    background-color: #ffffff;
+    color: #282c34;
+}
+
+.classNameButton:before {
+    content: '';
+    display: block;
+    width: 15px;
+    height: 15px;
+    background-color: rgba(0, 0, 0, 0.15);
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    pointer-events: none;
+    transform: translate3d(0, 0, 0) scale(1);
+    transition: transform .2s ease-in-out, opacity .2s ease-in-out;
+    transform-origin: right bottom;
+    clip-path: polygon(100% 0, 100% 100%, 0% 100%);
+}
+
+.classNameButton:after {
+    content: '';
+    display: block;
+    top: -6px;
+    right: -6px;
+    bottom: -6px;
+    left: -6px;
+    z-index: -1;
+    pointer-events: none;
+    border: 1px solid currentColor;
+    position: absolute;
+    opacity: .15;
+    transition: clip-path .2s ease-in-out, transform .2s ease-in-out, opacity .2s ease-in-out, -webkit-clip-path .2s ease-in-out;
+    transform-origin: center;
+    clip-path: polygon(100% 0, 100% calc(100% - 0px), calc(100% - 0px) 100%, 0 100%, 0 0);
+    transform: translate3d(0, 0, 0);
+    /*border-radius: calc( var(--grimlock-button-border-radius) / 2);*/
+}

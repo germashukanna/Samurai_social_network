@@ -32,9 +32,6 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
         let userId = this.props.router.params.userId;
         if (!userId) {
             userId = this.props.authorizedUserId;
-            // if (!userId) {
-            //     this.props.history.push('/login');
-            // }
         }
         this.props.getUserProfile(userId);
         this.props.setStatusTC(userId)
@@ -46,7 +43,7 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
 
     componentDidUpdate(prevProps: Readonly<ProfilePropsType>, prevState: Readonly<{}>, snapshot?: any) {
         // @ts-ignore
-         if (this.props.router.params.userId != prevProps.router.params.userId) {
+        if (this.props.router.params.userId != prevProps.router.params.userId) {
             this.refreshProfile()
         }
     }

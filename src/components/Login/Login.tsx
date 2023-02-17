@@ -10,6 +10,8 @@ import {AppStateType} from "../../redux/redux-store";
 import {useAppDispatch, useAppSelector} from "../../redux/Hooks";
 import {Navigate} from "react-router-dom";
 import {loginTC, logOutTC} from "../../redux/auth-reducer";
+import s from './Login.module.css'
+import {CustomButton} from "../../common/Button/Button";
 
 
 interface Values {
@@ -66,28 +68,28 @@ export const LoginForm: React.FC<PropsType> = React.memo((props) => {
         },
     })
     return (
-        <div style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
+        <div className={s.loginFormContainer}>
             <form onSubmit={formik.handleSubmit}>
                 <FormControl>
                     <FormGroup>
                         <TextField label="Email" margin="normal" {...formik.getFieldProps('email')}
                                    onBlur={formik.handleBlur}
-                                   size={'small'} color={'secondary'}
+                                   size={'small'} variant="filled"
                         />
                         {formik.touched.email &&
                         formik.errors.email
-                            ? <div style={{color: 'red'}}>{formik.errors.email}</div>
+                            ? <div style={{color: '#DF204D'}}>{formik.errors.email}</div>
                             : null}
                         <TextField type="password" label="Password" margin="normal"
                                    {...formik.getFieldProps('password')}
                                    onBlur={formik.handleBlur}
-                                   size={'small'} color={'secondary'}
+                                   size={'small'} variant="filled"
                         />
                         {formik.touched.password &&
                         formik.errors.password
-                            ? <div style={{color: 'red'}}>{formik.errors.password}</div>
+                            ? <div style={{color: '#DF204D'}}>{formik.errors.password}</div>
                             : null}
-                        <FormControlLabel label={'Remember me'} control={<Checkbox color={'secondary'}
+                        <FormControlLabel label={'Remember me'} control={<Checkbox color={'default'}
                                                                                    onChange={formik.handleChange}
                                                                                    checked={formik.values.rememberMe}
                                                                                    name='rememberMe'/>}/>
@@ -95,12 +97,8 @@ export const LoginForm: React.FC<PropsType> = React.memo((props) => {
                         {captchaUtl &&
                             <TextField label="CaptchaUrl" margin="normal" {...formik.getFieldProps('captchaUrl')}
                                        onBlur={formik.handleBlur}
-                                       size={'small'} color={'secondary'}
                             />}
-                        <Button type={'submit'} variant={'outlined'} color={'secondary'} size={'small'}>
-                            Login
-                        </Button>
-
+                        <CustomButton children={'Login'}/>
                     </FormGroup>
                 </FormControl>
             </form>
@@ -112,6 +110,7 @@ export const Login = () => {
 
     const isLoggedIh = useAppSelector((state: AppStateType) => state.auth.isAuth)
     const authUserId = useAppSelector((state: AppStateType) => state.auth.id)
+    const captchaUtl = useAppSelector((state: AppStateType) => state.auth.captchaUrl)
     const dispatch = useAppDispatch()
 
     const onHandlerSubmit = (formData: FormDataType) => {
@@ -123,13 +122,14 @@ export const Login = () => {
     }
 
     return (
-        <div style={{position: 'fixed', top: '22%', textAlign: 'center', width: '100%'}}>
+        <div className={s.loginContainer}>
             {isLoggedIh ? <Navigate to={"/profile/" + authUserId}/>
-                : <>
+                : <div>
                     <h1>Login</h1>
                     <LoginForm onClickLogout={onClickLogout}
                                onHandlerSubmit={onHandlerSubmit}/>
-                </>
+                    {captchaUtl}
+                </div>
             }
         </div>
     )

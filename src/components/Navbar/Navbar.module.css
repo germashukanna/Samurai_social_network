@@ -1,18 +1,22 @@
 .nav {
     grid-area: n;
-    background-color: #d7b18a;
-    padding: 20px;
+    padding: 20px 0;
+    display: flex;
+    justify-content: start;
+    margin: auto 5px;
 }
-
 
 .item {
     color: white;
     text-decoration: none;
+    padding-left: 20px;
 }
 
 .active {
-    color: purple;
+    color: #DF204D;
     text-decoration: none;
+    padding-left: 20px;
 }
+
 
 

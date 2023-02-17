@@ -16,13 +16,15 @@ const MyPosts: React.FC<myPostsPropsType> = React.memo((props) => {
     }
 
     return (
-        <div>
-            <div className={s.postBlock}>
-                <h3>My post</h3>
-            </div>
-            <AddMessageForm callback={addNewPostText}/>
-            <div className={s.posts}>
-                {postsElements}
+        <div className={s.postsContainer}>
+            <div className={s.imageDiv}>
+                <div className={s.postBlock}>
+                    <h3>My post</h3>
+                </div>
+                <AddMessageForm callback={addNewPostText}/>
+                <div className={s.posts}>
+                    {postsElements}
+                </div>
             </div>
         </div>
     )

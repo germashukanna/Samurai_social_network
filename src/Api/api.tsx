@@ -63,7 +63,7 @@ export const profileAPI = {
 }
 
 export const loginAPI = {
-    login(email: string, password: string, rememberMe: boolean, captchaUrl: string) {
+    login(email: string, password: string, rememberMe: boolean, captchaUrl: null | string = null) {
         return instance.post<ResponseType<{ userId: number }>>(`auth/login`, {email, password, rememberMe, captchaUrl})
             .then(response => response.data)
     },
@@ -102,17 +102,20 @@ export type ResponseType<T> = {
     fieldsErrors: string[]
 }
 
+export enum ResultCodeEnumType {
+    Success = 0,
+    Error = 1,
+    CaptchaIsRequired = 10
+}
 export type ResponseApiType<D = {}> = {
-    resultCode: number
+    resultCode: ResultCodeEnumType
     messages: Array<string>
     data: D
 }
 
 export type updatePhotoResponseType = {
-    photos: {
-        small: string
-        large: string
-    }
+    small: string | null
+    large: string | null
 }
 
 export type getProfileResponseType = {
