@@ -39,7 +39,7 @@ export const ProfileDataForm: React.FC<ProfileDataFormPropsType> = (props) => {
         },
         onSubmit: (values: getProfileResponseType) => {
             dispatch(saveProfile(values))
-            props.notToEditMode
+            // props.notToEditMode
         }
     })
 
