@@ -3,17 +3,17 @@
     justify-content: space-between;
     text-align: center;
     grid-area: h;
-    /*background-color: rgba(27, 26, 35, .9);*/
     background-color: black;
     min-height: 84px;
     font-family: 'Barlow Semi Condensed', sans-serif;
-    font-size: 16px;
+    font-size: 24px;
     font-weight: 400;
 }
 
-.headerNavbar{
+.headerNavbar {
     display: flex;
 }
+
 .header img {
     margin: auto 38px;
     width: 48px;
@@ -28,7 +28,8 @@
     flex-wrap: nowrap;
     justify-content: space-between;
 }
-.NavLink{
+
+.NavLink {
     text-decoration: none;
     color: white;
 }

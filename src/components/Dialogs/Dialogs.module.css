@@ -1,16 +1,20 @@
 .dialogs {
     display: grid;
     grid-template-columns: 2fr 10fr;
-}
-
-.dialogsItems .dialog {
-    padding: 10px;
-}
-
-.messages {
-    padding: 10px;
-}
-
-.messages .message {
-
+    padding: 20px 40px;
+    background-image: url(https://classic.armadon-theme.com/wp-content/uploads/sites/11/2021/04/section-cta.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    background-attachment: scroll;
+    border-top-color: #eceeef;
+    border-top-style: solid;
+    border-top-width: 0;
+    border-bottom-color: #eceeef;
+    border-bottom-style: solid;
+    border-bottom-width: 0;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-size: 20px;
+    height: 100%;
 }

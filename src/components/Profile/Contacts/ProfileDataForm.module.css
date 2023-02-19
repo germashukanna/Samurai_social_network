@@ -1,9 +1,13 @@
-.formControl{
+.formControl {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-.contacts{
+.contacts {
     padding-left: 10px;
+}
+
+.ProfileDataFormCustomButton {
+    margin: 15px 10px;
 }

@@ -6,16 +6,15 @@ import {DialogsPropsType} from "./DialogsContainer";
 import {AddMessageForm, ValuesType} from "../../Form/Form";
 
 
-
 const Dialogs: React.FC<DialogsPropsType> = React.memo((props) => {
 
     const dialogsElements = props.dialogsPage.dialogsData.map(dialog => <DialogItem key={dialog.id} name={dialog.name}
                                                                                     id={dialog.id}/>);
     const messagesElements = props.dialogsPage.messagesData.map(message => <Message message={message.message}
                                                                                     key={message.id}/>);
-        const newSendMessage = (values: ValuesType) => {
+    const newSendMessage = (values: ValuesType) => {
         props.sendMessage(values.message as string)
-        }
+    }
 
     return (
         <div className={s.dialogs}>
@@ -23,7 +22,7 @@ const Dialogs: React.FC<DialogsPropsType> = React.memo((props) => {
                 {dialogsElements}
             </div>
 
-            <div className={s.messages}>
+            <div className={s.messagesDialogs}>
                 <div>{messagesElements}</div>
                 <div>
                     <AddMessageForm callback={newSendMessage}/>

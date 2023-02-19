@@ -1,9 +1,9 @@
-import s from "./Users.module.css";
-import userPhoto from "../../assets/images/userFhoto.jpg";
+import s from "./User.module.css";
+import userPhoto from "../../assets/images/26-bpfull.jpg";
 import React from "react";
 import {NavLink} from "react-router-dom";
 import {UserType} from "../../redux/Users-reducer";
-import Button from "@mui/material/Button/Button";
+import {CustomButton} from "../../common/Button/Button";
 
 
 type UsersPropsType = {
@@ -16,7 +16,7 @@ type UsersPropsType = {
 export let User: React.FC<UsersPropsType> = React.memo(({user, followingInProgress, unfollow, follow}) => {
 
         return (
-            <div>
+            <div className={s.userContainer}>
                 <span>
                     <div>
                       <NavLink to={"/profile/" + user.id}>
@@ -26,29 +26,23 @@ export let User: React.FC<UsersPropsType> = React.memo(({user, followingInProgre
                     </div>
                     <div>
                         {user.followed
-                            ? <Button variant={'outlined'} color={'secondary'} size={'small'}
-                                      sx={{ mt: 0.5, mb: 0.5 }}
-                                disabled={followingInProgress.some((id) => id === user.id)}
-                                      onClick={() => {
-                                          unfollow(user.id);
+                            ? <CustomButton children={'Unfollow'}
+                                            disabled={followingInProgress.some((id) => id === user.id)}
+                                            onClick={() => {
+                                                unfollow(user.id);
 
-                                      }}>Unfollow</Button>
-                            : <Button variant={'outlined'} color={'secondary'} size={'small'}
-                                      sx={{ mt: 0.5, mb: 0.5 }}
-                                disabled={followingInProgress.some((id) => id === user.id)}
-                                      onClick={() => {
-                                          follow(user.id);
-                                      }}>follow</Button>}
+                                            }}/>
+                            : <CustomButton children={'Unfollow'}
+                                            disabled={followingInProgress.some((id) => id === user.id)}
+                                            onClick={() => {
+                                                follow(user.id);
+                                            }}/>}
                     </div>
                 </span>
                 <span>
                     <span>
                         <div>{user.fullName}</div>
                         <div>{user.status}</div>
-                    </span>
-                    <span>
-                        <div>{'u.location.city'}</div>
-                        <div>{'u.location.country'}</div>
                     </span>
                 </span>
             </div>)

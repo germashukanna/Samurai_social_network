@@ -10,6 +10,9 @@ import {saveProfile} from "../../../redux/Profile-reducer";
 import {useAppDispatch} from "../../../redux/Hooks";
 import {getProfileResponseType} from "../../../Api/api";
 import Box from "@mui/material/Box";
+import {CustomButton} from "../../../common/Button/Button";
+import {TextField} from "@mui/material";
+import {Navigate, NavLink} from "react-router-dom";
 
 
 type FormikErrorsType = {
@@ -48,66 +51,72 @@ export const ProfileDataForm: React.FC<ProfileDataFormPropsType> = (props) => {
             <form onSubmit={formik.handleSubmit}>
                 <FormControl className={s.formControl}>
                     <FormGroup>
-                        <Button type={'submit'} variant={'outlined'} color={'secondary'} size={'medium'}
-                        >
-                            save
-                        </Button>
+                        <div className={s.ProfileDataFormCustomButton}>
+                            <CustomButton children={'Save'}/>
+                        </div>
                         <Box>
-                <textarea
-                    {...formik.getFieldProps('fullName')}
-                    placeholder="Enter yore full name." onBlur={formik.handleBlur}
-                    color="secondary"
-                />
+                            <TextField
+                                {...formik.getFieldProps('fullName')}
+                                placeholder="Enter yore full name." onBlur={formik.handleBlur}
+                                color="info" variant={'outlined'}
+                                sx={{mb: '10px', ml: '10px'}}
+                            />
                         </Box>
                         <Box>
-                            <FormControlLabel label={'looking for a job'} control={<Checkbox color={'secondary'}
+                            <FormControlLabel label={'looking for a job'} control={<Checkbox color={'primary'}
                                                                                              onChange={formik.handleChange}
                                                                                              checked={formik.values.lookingForAJob}
                                                                                              name='lookingForAJob'/>}/>
                         </Box>
                         <Box>
-                        <textarea
-                            {...formik.getFieldProps('lookingForAJobDescription')}
-                            placeholder="Description" onBlur={formik.handleBlur}
-                            color="secondary"
-                        />
+                            <TextField
+                                {...formik.getFieldProps('lookingForAJobDescription')}
+                                placeholder="Description." onBlur={formik.handleBlur}
+                                color="info" variant={'outlined'}
+                                sx={{mb: '10px', ml: '10px'}}
+                            />
                         </Box>
                         <Box>
-                        <textarea
-                            {...formik.getFieldProps('aboutMe')}
-                            placeholder="About me" onBlur={formik.handleBlur}
-                            color="secondary"
-                        />
+                            <TextField
+                                {...formik.getFieldProps('aboutMe')}
+                                placeholder="About me." onBlur={formik.handleBlur}
+                                color="info" variant={'outlined'}
+                                sx={{mb: '10px', ml: '10px'}}
+                            />
                         </Box>
                         <div>
                             <b>Contacts:</b>: <div
                             className={s.contacts}>
                             <div>
-                                <b>Github: <textarea
+                                <b>Github: <TextField
                                     {...formik.getFieldProps('contacts.github')}
-                                    placeholder="github" onBlur={formik.handleBlur}
-                                    color="secondary" name='contacts.github'
+                                    placeholder="Github." onBlur={formik.handleBlur}
+                                    color="info" variant={'outlined'}
+                                    sx={{mb: '10px', ml: '10px'}}
                                 /></b>
                             </div>
                             <div>
-                                <b>Facebook: <textarea
+                                <b>Facebook:<TextField
                                     {...formik.getFieldProps('contacts.facebook')}
-                                    placeholder="facebook" onBlur={formik.handleBlur} name='contacts.facebook'
-                                    color="secondary"
+                                    placeholder="Facebook." onBlur={formik.handleBlur}
+                                    color="info" variant={'outlined'}
+                                    sx={{mb: '10px', ml: '10px'}}
                                 /></b>
                             </div>
                             <div>
-                                <b>Instagram: <textarea
+                                <b>Instagram: <TextField
                                     {...formik.getFieldProps('contacts.instagram')}
-                                    placeholder="instagram" onBlur={formik.handleBlur}
-                                    color="secondary" name='contacts.instagram'
+                                    placeholder="Instagram." onBlur={formik.handleBlur}
+                                    color="info" variant={'outlined'}
+                                    sx={{mb: '10px', ml: '10px'}}
                                 /></b>
                             </div>
                             <div>
-                                <b>Website: <textarea
+                                <b>Website: <TextField
                                     {...formik.getFieldProps('contacts.website')}
-                                    placeholder="github" onBlur={formik.handleBlur}
-                                    color="secondary" name='contacts.website'
+                                    placeholder="Website." onBlur={formik.handleBlur}
+                                    color="info" variant={'outlined'}
+                                    sx={{mb: '10px', ml: '10px'}}
                                 /></b>
                             </div>
                         </div>

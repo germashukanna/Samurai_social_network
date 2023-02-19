@@ -1,5 +1,11 @@
-.musicContainer {
+.userContainer {
     font-family: 'Barlow Semi Condensed', sans-serif;
     font-size: 20px;
     padding: 20px 40px;
+}
+
+.photoUrl{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
 }

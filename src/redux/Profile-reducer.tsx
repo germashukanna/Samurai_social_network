@@ -1,11 +1,4 @@
-import {
-    getAPI,
-    getProfileResponseType,
-    PostsType,
-    profileAPI,
-    ResultCodeEnumType,
-    updatePhotoResponseType
-} from "../Api/api";
+import {getAPI, getProfileResponseType, PostsType, profileAPI, ResultCodeEnumType} from "../Api/api";
 import {Dispatch} from "redux";
 
 const Profile_ADD_POST = 'Profile/ADD-POST';
@@ -27,8 +20,6 @@ export type PhotosType = {
     small: string | null
     large: string | null
 }
-
-
 
 export type ProfileType = {
     userId: number

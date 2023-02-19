@@ -1,8 +1,8 @@
 import React from "react";
 import {useFormik} from "formik";
-import Button from "@mui/material/Button/Button";
 import {TextField} from "@mui/material";
 import {CustomButton} from "../common/Button/Button";
+import s from './Form.module.css'
 
 
 type FormikErrorsType = {
@@ -46,13 +46,13 @@ export const AddMessageForm: React.FC<ValuesType> = React.memo((props) => {
                     {...formik.getFieldProps('message')}
                     placeholder="Enter yore message." onBlur={formik.handleBlur}
                     color="info" variant={'outlined'}
-                    sx={{mb: '10px'}}
+                    sx={{mb: '10px', ml: '10px'}}
                 />
                 {formik.errors.message
                     && formik.touched.message
                     && <div style={{color: '#DF204D'}}>{formik.errors.message}</div>}
             </div>
-            <div>
+            <div className={s.formCustomButton}>
                 <CustomButton children={'Send'}/>
                 {props.removeButton ? <button type="button">Remove</button> : ''}
             </div>

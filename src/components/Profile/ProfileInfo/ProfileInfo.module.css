@@ -19,15 +19,11 @@
 .mainPhoto {
     max-width: 150px;
     border-radius: 50%;
+    position: relative;
 }
 
 .inputTypeFile {
-    /*background-color: #6757D6;*/
-    /*color: white;*/
-    font-family: 'Barlow Semi Condensed', sans-serif;
-    /*position: relative;*/
-    /*width: 150px;*/
-    /*height: 30px;*/
-    font-size: 16px;
-    font-weight: 600;
+    position: absolute;
+    top: 233px;
+    left: 160px;
 }

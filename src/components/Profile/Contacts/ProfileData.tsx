@@ -14,7 +14,7 @@ export const ProfileData: React.FC<ProfileDataPropsType> = (props) => {
     return (
         <>
             {props.isOwner && <div className={s.editProfileButton}>
-                <CustomButton children={'edit profile'} onClick={props.goToEditMode}/>
+                <CustomButton children={'Edit profile'} onClick={props.goToEditMode}/>
             </div>}
             <h2>{props.profile.fullName}</h2>
             <p>

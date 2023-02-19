@@ -7,7 +7,7 @@ import userPhoto from "../../../assets/images/userFhoto.jpg";
 import {useAppDispatch} from "../../../redux/Hooks";
 import {ProfileDataForm} from "../Contacts/ProfileDataForm";
 import {ProfileData} from "../Contacts/ProfileData";
-import {Contacts} from "../Contacts/Contscts";
+import {AddCircleOutline} from "@mui/icons-material";
 
 type ProfileInfo = {
     profile: null | ProfileType
@@ -37,15 +37,20 @@ const ProfileInfo: React.FC<ProfileInfo> = React.memo((props) => {
         <div>
             <div className={s.descriptionBlock}>
                 <img src={props.profile.photos.large || userPhoto} className={s.mainPhoto}/>
-                {props.isOwner && <input type={'file'} onChange={onMainPhotoSelected} className={s.inputTypeFile}/>}
+                {props.isOwner &&
+                    <label className={s.inputTypeFile}><input type={'file'} onChange={onMainPhotoSelected}
+                                                              style={{display: 'none'}}/>
+                        <AddCircleOutline/>
+                    </label>}
                 {editMode
                     ? <ProfileDataForm notToEditMode={() => {
+                        setEditMode(false)
                         // @ts-ignore
-                        setEditMode(false)}} profile={props.profile}/>
+                    }} profile={props.profile}/>
                     : <ProfileData profile={props.profile} isOwner={props.isOwner} goToEditMode={() => {
-                        setEditMode(true)}}/>
+                        setEditMode(true)
+                    }}/>
                 }
-                <Contacts contactValue={props.contactValue} contactTitle={props.contactValue}/>
                 <ProfilIStatusWithHook status={props.status} updateStatusTC={props.updateStatusTC}/>
             </div>
         </div>

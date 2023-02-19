@@ -12,7 +12,6 @@ export const ProfilIStatusWithHook =(props:ProfileStatusWithHooksPropsType)=>  {
     const [editMode, setEditMode] = useState<boolean>(false)
     const [status, setStatus] = useState<string>(props.status)
 
-    // debugger
 
     useEffect(()=>{
         setStatus(props.status)
@@ -27,7 +26,6 @@ export const ProfilIStatusWithHook =(props:ProfileStatusWithHooksPropsType)=>  {
     }
 
     const deactivateEditMode = () => {
-        //debugger
         setEditMode(false)
         props.updateStatusTC(status)
     }
