@@ -2,14 +2,15 @@ import React, {JSXElementConstructor} from 'react';
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import Profile from "./Profile";
 import {AppStateType} from "../../redux/redux-store";
-import {getUserProfile, ProfileType, savePhoto, setStatusTC, updateStatusTC} from "../../redux/Profile-reducer";
+import {getUserProfile, savePhoto, setStatusTC, updateStatusTC} from "../../redux/Profile-reducer";
 import {connect} from "react-redux";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import {compose} from "redux";
+import {getProfileResponseType} from "../../Api/api";
 
 
 type mapStateToPropsType = {
-    profile: any | ProfileType
+    profile: any | getProfileResponseType
     status: string
     authorizedUserId: number | null
     isAuth: boolean,
@@ -89,10 +90,6 @@ export const withRouter = (Component: JSXElementConstructor<any>): JSXElementCon
 
     return ComponentWithRouterProp;
 }
-//
-// export const ProfileContainerToStore = connect(mapStateToProps, {
-//     getUserProfile
-// })(withRouter(WithUrlDataContainerComponent))
 
 export default compose<React.ComponentType>(
     connect(mapStateToProps,

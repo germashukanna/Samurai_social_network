@@ -1,5 +1,6 @@
-import {getAPI, ResultCodeEnumType} from "../Api/api";
+import {ResultCodeEnumType} from "../Api/api";
 import {Dispatch} from "redux";
+import {getAPI} from "../Api/Users-api";
 
 const FOLLOW = "Users/FOLLOW"
 const UNFOLLOW = "Users/UNFOLLOW"

@@ -11,6 +11,7 @@ import UsersContainer from "./components/Users/UsersContainer";
 import {useAppDispatch, useAppSelector} from "./redux/Hooks";
 import {initialazeAppTC} from "./redux/app-reducer";
 import {CircularProgress} from "@mui/material";
+import {NotFound} from "./common/404/NotFound";
 
 const ProfileContainer = React.lazy(() => import ('./components/Profile/ProfileContainer'));
 const Dialogs = React.lazy(() => import ('./components/Dialogs/DialogsContainer'));
@@ -56,7 +57,7 @@ const App: React.FC<AppPropsType> = (props) => {
                             <Route path={"/users"} element={<UsersContainer/>}/>
                             <Route path={"/login"} element={<Login/>}/>
                             <Route path={"/"} element={<Login/>}/>
-                            <Route path={"*"} element={<div>404 NOT FOUND</div>}/>
+                            <Route path={"*"} element={<NotFound/>}/>
 
                             {/*<Route path={"/sidebar"} element={<SidebarItem key={1} img={""} name={""}/>}*/}
                         </Routes>

@@ -21,7 +21,7 @@ export const ProfileData: React.FC<ProfileDataPropsType> = (props) => {
                 <b>About me: </b> {props.profile.aboutMe}
             </p>
             <p>
-                <b>Looking for a job: </b>{props.profile.lookingForAJob} <span>yes</span>
+                <b>Looking for a job: </b>{props.profile.lookingForAJob ? "yes" : "no"}
             </p>
             {props.profile.lookingForAJob &&
                 <p> {props.profile.lookingForAJobDescription}</p>

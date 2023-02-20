@@ -7,8 +7,6 @@ import {ActionAuthType, authsReducer} from "./auth-reducer";
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {appReducer} from "./app-reducer";
 
-// type ReducersType = typeof rootReducer
-
 export type AppStateType = ReturnType<typeof rootReducer>
 
 export const rootReducer = combineReducers({
@@ -29,8 +27,7 @@ export type ReduxStoreType = typeof store
 
 export type AppDispatch = ThunkDispatch<AppStateType, unknown, AnyAction>
 
-export type AppThunkType = ThunkAction<
-    any,
+export type AppThunkType = ThunkAction<any,
     AppStateType,
     unknown,
     AppActionStateType>

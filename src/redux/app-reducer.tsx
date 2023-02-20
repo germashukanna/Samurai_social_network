@@ -4,12 +4,10 @@ import {getAuthUserData} from "./auth-reducer";
 
 export type AppType = {
     initialazed: boolean
-
 }
 
 export const initialState = {
     initialazed: false,
-
 }
 
 export type ActionAuthType = ReturnType<typeof initialazedSuccssAC>
@@ -22,7 +20,6 @@ export const appReducer = (state: AppType = initialState, action: ActionAuthType
                 ...state,
                 initialazed: true
             }
-
         default:
             return state
     }

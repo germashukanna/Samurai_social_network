@@ -14,7 +14,7 @@ type ProfileInfo = {
     status: string
     updateStatusTC: (status: string) => any
     isOwner: boolean
-    savePhoto: any
+    savePhoto: (file: File) => void
     contactTitle?: string,
     contactValue?: any
 }
@@ -43,10 +43,10 @@ const ProfileInfo: React.FC<ProfileInfo> = React.memo((props) => {
                         <AddCircleOutline/>
                     </label>}
                 {editMode
-                    ? <ProfileDataForm notToEditMode={() => {
-                        setEditMode(false)
+                    ? <ProfileDataForm
+                        // notToEditMode={() => {setEditMode(false)
                         // @ts-ignore
-                    }} profile={props.profile}/>
+                    profile={props.profile}/>
                     : <ProfileData profile={props.profile} isOwner={props.isOwner} goToEditMode={() => {
                         setEditMode(true)
                     }}/>

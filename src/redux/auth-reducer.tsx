@@ -1,5 +1,7 @@
-import {getAPI, loginAPI, ResultCodeEnumType, securityAPI} from "../Api/api";
+import {ResultCodeEnumType} from "../Api/api";
 import {AppDispatch, AppThunkType} from "./redux-store";
+import {getAPI} from "../Api/Users-api";
+import {loginAPI, securityAPI} from "../Api/Auth-api";
 
 
 export type AuthPageType = {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {useFormik} from "formik";
 import Button from "@mui/material/Button/Button";
 import FormControl from "@mui/material/FormControl/FormControl";
@@ -12,7 +12,6 @@ import {getProfileResponseType} from "../../../Api/api";
 import Box from "@mui/material/Box";
 import {CustomButton} from "../../../common/Button/Button";
 import {TextField} from "@mui/material";
-import {Navigate, NavLink} from "react-router-dom";
 
 
 type FormikErrorsType = {
@@ -21,11 +20,12 @@ type FormikErrorsType = {
 
 type ProfileDataFormPropsType = {
     profile: getProfileResponseType
-    notToEditMode: () => void
+    // notToEditMode: () => void
 }
 export const ProfileDataForm: React.FC<ProfileDataFormPropsType> = (props) => {
 
     let dispatch = useAppDispatch()
+    const [editMode, setEditMode] = useState<boolean>(false)
 
     let formik = useFormik({
         initialValues: {
@@ -42,7 +42,7 @@ export const ProfileDataForm: React.FC<ProfileDataFormPropsType> = (props) => {
         },
         onSubmit: (values: getProfileResponseType) => {
             dispatch(saveProfile(values))
-            // props.notToEditMode
+            setEditMode(true)
         }
     })
 

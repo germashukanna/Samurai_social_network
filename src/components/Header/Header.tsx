@@ -4,7 +4,6 @@ import {NavLink} from "react-router-dom";
 import {HeaderPropsType} from "./HeaderContainer";
 import {useAppDispatch} from "../../redux/Hooks";
 import {logOutTC} from "../../redux/auth-reducer";
-import Button from "@mui/material/Button/Button";
 import imageLogo from './../../assets/images/Logo.jpg'
 import Navbar from "../Navbar/Navbar";
 import {CustomButton} from "../../common/Button/Button";

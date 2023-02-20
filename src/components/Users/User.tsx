@@ -44,6 +44,10 @@ export let User: React.FC<UsersPropsType> = React.memo(({user, followingInProgre
                         <div>{user.fullName}</div>
                         <div>{user.status}</div>
                     </span>
+                    {/*<span>*/}
+                    {/*    <div>{user.location.country}</div>*/}
+                    {/*    <div>{user.location.city}</div>*/}
+                    {/*</span>*/}
                 </span>
             </div>)
     }
