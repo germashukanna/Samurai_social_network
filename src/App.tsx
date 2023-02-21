@@ -3,11 +3,11 @@ import './App.css';
 import Settings from "./components/Settings/Settings";
 import Music from "./components/Music/Music";
 import New from "./components/New/New";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import {Login} from "./components/Login/Login";
 import {ReduxStoreType} from "./redux/redux-store";
-import UsersContainer from "./components/Users/UsersContainer";
+import {UsersPage} from "./components/Users/UsersContainer";
 import {useAppDispatch, useAppSelector} from "./redux/Hooks";
 import {initialazeAppTC} from "./redux/app-reducer";
 import {CircularProgress} from "@mui/material";
@@ -54,7 +54,7 @@ const App: React.FC<AppPropsType> = (props) => {
                             <Route path={"/new"} element={<New/>}/>
                             <Route path={"/Music"} element={<Music/>}/>
                             <Route path={"/settings"} element={<Settings/>}/>
-                            <Route path={"/users"} element={<UsersContainer/>}/>
+                            <Route path={"/users"} element={<UsersPage/>}/>
                             <Route path={"/login"} element={<Login/>}/>
                             <Route path={"/"} element={<Login/>}/>
                             <Route path={"*"} element={<NotFound/>}/>

@@ -146,7 +146,7 @@ const followUnFollow = async (dispatch: Dispatch<UsersReducerAT>, userId: number
     dispatch(toggleFollowingProgress(false, userId));
 }
 
-export const follow = (userId: number) => {
+export const followTC = (userId: number) => {
     return async (dispatch: Dispatch<UsersReducerAT>) => {
         await followUnFollow(dispatch, userId, getAPI.follow.bind(getAPI), followSuccess)
     }

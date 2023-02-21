@@ -1,4 +1,4 @@
-import {follow} from "./Users-reducer";
+import {followTC} from "./Users-reducer";
 import {getAPI} from "../Api/Users-api";
 import {ResponseApiType, ResultCodeEnumType} from "../Api/api";
 
@@ -16,7 +16,7 @@ const result: ResponseApiType = {
 test('follow should be success', async () => {
 // @ts-ignore
     getAPIMock.follow.mockReturnValue(Promise.resolve(result))
-    const thunk = follow(1)
+    const thunk = followTC(1)
     const dispatchMock = jest.fn()
    await thunk(dispatchMock)
 
