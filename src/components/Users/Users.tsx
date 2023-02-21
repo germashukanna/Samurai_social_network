@@ -1,7 +1,8 @@
 import React from "react";
-import {UserType} from "../../redux/Users-reducer";
+import {FilterType, UserType} from "../../redux/Users-reducer";
 import {Paginator} from "../common/Paginator/Paginator";
 import {User} from "./User";
+import {UsersSearchForm} from "./UsersSearchForm/UsersSearchForm";
 
 type UsersPropsType = {
     totalUsersCount: number
@@ -13,12 +14,14 @@ type UsersPropsType = {
     follow: (userId: number) => void
     onPageChanged: (page: number) => void
     portionSize: number
+    onFilterChanged: (filter: FilterType) => void
 }
 
 export let Users = React.memo((props: UsersPropsType) => {
 
     return (
         <div>
+            <div><UsersSearchForm onFilterChanged={props.onFilterChanged}/></div>
             <Paginator currentPage={props.currentPage} onPageChanged={props.onPageChanged}
                        totalItemsCount={props.totalUsersCount} pageSize={props.pageSize}
                        portionSize={props.portionSize}/>

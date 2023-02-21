@@ -3,8 +3,9 @@ import {profileAPI} from "./Profile-api";
 
 
 export const getAPI = {
-    getUsers(currentPage: number = 1, pageSize: number = 1) {
-        return instance.get<GetUsersItems>(`users?page=${currentPage}&count=${pageSize}`)
+    getUsers(currentPage: number = 1, pageSize: number = 1, term: string = '', friend: null | boolean = null) {
+        return instance.get<GetUsersItems>(`users?page=${currentPage}&count=${pageSize}&term=${term}`
+            + (friend === null ? '' : `&friend=${friend}`) )
             .then(response => response.data)
     },
 
@@ -17,12 +18,12 @@ export const getAPI = {
             .then(response => response.data)
     },
 
-    unFollow(id: number) {
-        return instance.delete(`follow/${id}`)
-            .then(response => response.data) as Promise <ResponseApiType>
+    unFollow(userId: number) {
+        return instance.delete<ResponseApiType>(`follow/${userId}`)
+            .then(response => response.data)
     },
-    follow(id: number) {
-        return instance.post<ResponseApiType>(`follow/${id}`)
+    follow(userId: number) {
+        return instance.post<ResponseApiType>(`follow/${userId}`)
             .then(response => response.data)
     }
 }

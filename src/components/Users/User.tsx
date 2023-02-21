@@ -32,7 +32,7 @@ export let User: React.FC<UsersPropsType> = React.memo(({user, followingInProgre
                                                 unfollow(user.id);
 
                                             }}/>
-                            : <CustomButton children={'Unfollow'}
+                            : <CustomButton children={'Follow'}
                                             disabled={followingInProgress.some((id) => id === user.id)}
                                             onClick={() => {
                                                 follow(user.id);

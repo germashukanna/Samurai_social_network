@@ -1,0 +1,13 @@
+.usersSearchFormContainer {
+    margin: 20px 15px;
+    display: flex;
+    flex-direction: row;
+}
+
+.inputBase {
+    background-color: white;
+}
+
+.customButtonSearchFormContainer{
+    margin-top: 25px;
+}

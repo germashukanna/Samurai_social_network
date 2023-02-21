@@ -27,3 +27,6 @@ export const getFollowingInProgress = (state: AppStateType) => {
 export const getPortionSize = (state: AppStateType) => {
     return state.usersPage.portionSize
 }
+export const getFilter = (state: AppStateType) => {
+    return state.usersPage.filter
+}
