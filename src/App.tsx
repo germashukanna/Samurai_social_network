@@ -3,8 +3,7 @@ import './App.css';
 import Settings from "./components/Settings/Settings";
 import Music from "./components/Music/Music";
 import New from "./components/New/New";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
-import HeaderContainer from "./components/Header/HeaderContainer";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import {Login} from "./components/Login/Login";
 import {ReduxStoreType} from "./redux/redux-store";
 import {UsersPage} from "./components/Users/UsersContainer";
@@ -12,6 +11,7 @@ import {useAppDispatch, useAppSelector} from "./redux/Hooks";
 import {initialazeAppTC} from "./redux/app-reducer";
 import {CircularProgress} from "@mui/material";
 import {NotFound} from "./common/404/NotFound";
+import Header from "./components/Header/Header";
 
 const ProfileContainer = React.lazy(() => import ('./components/Profile/ProfileContainer'));
 const Dialogs = React.lazy(() => import ('./components/Dialogs/DialogsContainer'));
@@ -37,12 +37,15 @@ const App: React.FC<AppPropsType> = (props) => {
         return <div style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
             <CircularProgress/></div>
     }
+    if (!initialized) {
+        return <Navigate to={'/login'}/>
+    }
 
     return (
         <React.Suspense fallback={<CircularProgress/>}>
             <BrowserRouter>
                 <div className={'app-wrapper'}>
-                    <HeaderContainer/>
+                    <Header/>
                     <div className={'.app-wrapper-content'}>
                         <Routes>
                             <Route path={"/dialogs"}

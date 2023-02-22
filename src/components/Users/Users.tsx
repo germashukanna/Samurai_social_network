@@ -3,7 +3,7 @@ import {FilterType, followTC, getUsers, unFollow} from "../../redux/Users-reduce
 import {Paginator} from "../common/Paginator/Paginator";
 import {User} from "./User";
 import {UsersSearchForm} from "./UsersSearchForm/UsersSearchForm";
-import {useAppDispatch} from "../../redux/Hooks";
+import {useAppDispatch, useAppSelector} from "../../redux/Hooks";
 import {
     getCurrentPage,
     getFilter,
@@ -14,7 +14,7 @@ import {
     getTotalUsersCount
 } from "../../redux/users-selectors";
 import {useSelector} from "react-redux";
-import {useNavigate, useSearchParams} from "react-router-dom";
+import {Navigate, useNavigate, useSearchParams} from "react-router-dom";
 
 type UsersPropsType = {}
 

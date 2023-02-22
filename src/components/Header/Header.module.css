@@ -25,12 +25,19 @@
     margin: auto 38px;
     color: white;
     display: flex;
-    flex-wrap: nowrap;
     justify-content: space-between;
 }
 
 .NavLink {
     text-decoration: none;
     color: white;
+}
+
+.loginBlockAvatar {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    flex-direction: row;
 }
 
