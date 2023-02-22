@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {FilterType, getUsers, unFollow, followTC} from "../../redux/Users-reducer";
+import {FilterType, followTC, getUsers, unFollow} from "../../redux/Users-reducer";
 import {Paginator} from "../common/Paginator/Paginator";
 import {User} from "./User";
 import {UsersSearchForm} from "./UsersSearchForm/UsersSearchForm";
@@ -9,13 +9,19 @@ import {
     getFilter,
     getFollowingInProgress,
     getPageSize,
-    getPageUsers, getPortionSize,
+    getPageUsers,
+    getPortionSize,
     getTotalUsersCount
 } from "../../redux/users-selectors";
 import {useSelector} from "react-redux";
+import {useNavigate, useSearchParams} from "react-router-dom";
 
-type UsersPropsType = {
+type UsersPropsType = {}
 
+type QueryParamsType = {
+    term?: string
+    page?: string
+    friend?: string
 }
 
 export const Users = React.memo((props: UsersPropsType) => {
@@ -29,11 +35,55 @@ export const Users = React.memo((props: UsersPropsType) => {
     const portionSize = useSelector(getPortionSize)
 
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
+    const [searchParams, setSearchParams] = useSearchParams()
+
+    // useEffect(() => {
+    //     const parsed = searchParams.get('pageSize')
+    //     setSearchParams(searchParams)
+    //
+    //     let actualPage = currentPage
+    //     let actualFilter = filter
+    //
+    //     if (!!parsed.page) actualPage = Number(parsed.page)
+    //     if (!!parsed.term) actualFilter = {...actualFilter, term: parsed.term as string}
+    //     switch (parsed.friend) {
+    //         case 'null':
+    //             actualFilter = {...actualFilter, friend: null}
+    //             break;
+    //         case 'true':
+    //             actualFilter = {...actualFilter, friend: true}
+    //             break;
+    //         case 'false':
+    //             actualFilter = {...actualFilter, friend: false}
+    //             break;
+    //     }
+    //
+    //
+    //     dispatch(getUsers(actualPage, pageSize, actualFilter))
+    //
+    // }, [])
 
     useEffect(() => {
+        // searchParams.get('pageSize')
+        // setSearchParams(searchParams)
         dispatch(getUsers(currentPage, pageSize, filter))
 
     }, [])
+
+    useEffect(() => {
+        const query: QueryParamsType = {}
+
+        if (!!filter.term) query.term = filter.term
+        if (filter.friend !== null) query.friend = String(filter.friend)
+        if (currentPage !== 1) query.page = String(currentPage)
+
+        const queryToString = new URLSearchParams(query)
+
+
+        navigate('/users')
+        setSearchParams(queryToString.toString())
+    }, [filter, currentPage])
 
     const onPageChanged = (pageNumber: number) => {
         dispatch(getUsers(pageNumber, pageSize, filter))

@@ -5,6 +5,8 @@ import {FilterType} from "../../../redux/Users-reducer";
 import {IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput, Select} from "@mui/material";
 import { ClearOutlined } from '@mui/icons-material';
 import {CustomButton} from "../../../common/Button/Button";
+import {useSelector} from "react-redux";
+import {getFilter} from "../../../redux/users-selectors";
 
 
 
@@ -19,10 +21,13 @@ type UsersSearchFormPropsType = {
 }
 
 export const UsersSearchForm: React.FC<UsersSearchFormPropsType> = React.memo((props) => {
+
+    const filter = useSelector(getFilter)
+
     const formik = useFormik({
         initialValues: {
-            term: '',
-            friend: null as null | false
+            term: filter.term,
+            friend: filter.friend
         },
         validate: (values) => {
         },
