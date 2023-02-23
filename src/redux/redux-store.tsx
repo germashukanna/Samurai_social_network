@@ -6,6 +6,7 @@ import {usersReducer} from "./Users-reducer";
 import {ActionAuthType, authsReducer} from "./auth-reducer";
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {appReducer} from "./app-reducer";
+import {chatReducer} from "./chat-reducer";
 
 export type AppStateType = ReturnType<typeof rootReducer>
 
@@ -15,8 +16,8 @@ export const rootReducer = combineReducers({
     sidebarPage: sidebarReducer,
     usersPage: usersReducer,
     auth: authsReducer,
-    app: appReducer
-
+    app: appReducer,
+    chat: chatReducer
 });
 
 export let store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
