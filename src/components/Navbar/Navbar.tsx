@@ -4,10 +4,6 @@ import {NavLink} from "react-router-dom";
 import {SidebarType} from "../../redux/store";
 
 
-// type NavbarPropsType = {
-//     state: SidebarType,
-// }
-
 const Navbar = React.memo((props) => {
     return (
         <nav className={s.nav}>
@@ -21,6 +17,8 @@ const Navbar = React.memo((props) => {
             <div><NavLink to="/settings"
                           className={(navData) => navData.isActive ? s.active : s.item}>Settings</NavLink></div>
             <div><NavLink to="/users/" className={(navData) => navData.isActive ? s.active : s.item}>Users</NavLink>
+            </div>
+            <div><NavLink to="/chatPage/" className={(navData) => navData.isActive ? s.active : s.item}>Chat</NavLink>
             </div>
             {/*<div><NavLink to="/sidebar" className={(navData) => navData.isActive ? s.active:s.item}>Friends</NavLink></div>*/}
             {/*<SidebarFr sidebarFr={props.state.friends}/>*/}

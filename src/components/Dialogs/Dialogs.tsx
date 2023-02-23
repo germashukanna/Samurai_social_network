@@ -3,7 +3,7 @@ import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {DialogsPropsType} from "./DialogsContainer";
-import {AddMessageForm, ValuesType} from "../../Form/Form";
+import {AddMessageForm, ValuesType} from "../../form/Form";
 
 
 const Dialogs: React.FC<DialogsPropsType> = React.memo((props) => {

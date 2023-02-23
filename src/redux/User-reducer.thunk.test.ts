@@ -1,8 +1,8 @@
 import {followTC} from "./Users-reducer";
-import {getAPI} from "../Api/Users-api";
-import {ResponseApiType, ResultCodeEnumType} from "../Api/api";
+import {getAPI} from "../api/Users-api";
+import {ResponseApiType, ResultCodeEnumType} from "../api/api";
 
-jest.mock('../Api/Users-api')
+jest.mock('../api/Users-api')
 const getAPIMock = getAPI
 
 const result: ResponseApiType = {

@@ -1,7 +1,7 @@
-import {getProfileResponseType, PostsType, ResultCodeEnumType} from "../Api/api";
+import {getProfileResponseType, PostsType, ResultCodeEnumType} from "../api/api";
 import {Dispatch} from "redux";
-import {getAPI} from "../Api/Users-api";
-import {profileAPI} from "../Api/Profile-api";
+import {getAPI} from "../api/Users-api";
+import {profileAPI} from "../api/Profile-api";
 
 const Profile_ADD_POST = 'Profile/ADD-POST';
 const Profile_DELETE_POST = 'Profile/DELETE_POST';

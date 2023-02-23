@@ -8,7 +8,7 @@ import Checkbox from "@mui/material/Checkbox/Checkbox";
 import s from './ProfileDataForm.module.css'
 import {saveProfile} from "../../../redux/Profile-reducer";
 import {useAppDispatch} from "../../../redux/Hooks";
-import {getProfileResponseType} from "../../../Api/api";
+import {getProfileResponseType} from "../../../api/api";
 import Box from "@mui/material/Box";
 import {CustomButton} from "../../../common/Button/Button";
 import {TextField} from "@mui/material";

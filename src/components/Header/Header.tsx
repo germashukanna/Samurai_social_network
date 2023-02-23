@@ -61,7 +61,6 @@ const Header = React.memo(() => {
         </div>
         <div className={s.loginBlock}>
             {isAuth
-
                 ? <div className={s.loginBlockAvatar}>
                     <StyledBadge
                         overlap="circular"
@@ -69,10 +68,13 @@ const Header = React.memo(() => {
                         variant="dot"
                         sx={{mr: '25px'}}
                     >
-                        <Avatar title={login || ''} alt="Anna Hermashuk" src={profilePhoto || userPhoto}
+                        <Avatar title={login || ''} alt="Anna Hermashuk" src={profilePhoto}
                                 sx={{width: 56, height: 56}}/>
                     </StyledBadge>
-                    <CustomButton children={'Log out'} onClick={onClickLogoutButton}/></div>
+                    <div className={s.loginBlockCustomButton}>
+                    <CustomButton children={'Log out'} onClick={onClickLogoutButton}/>
+                </div>
+            </div>
                 : <NavLink to="/login" className={s.NavLink}>Login</NavLink>}
         </div>
     </header>

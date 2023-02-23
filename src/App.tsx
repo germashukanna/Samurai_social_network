@@ -15,6 +15,7 @@ import Header from "./components/Header/Header";
 
 const ProfileContainer = React.lazy(() => import ('./components/Profile/ProfileContainer'));
 const Dialogs = React.lazy(() => import ('./components/Dialogs/DialogsContainer'));
+const ChatPage = React.lazy(() => import ('./pages/chat/ChatPage'));
 
 
 type AppPropsType = {
@@ -59,6 +60,7 @@ const App: React.FC<AppPropsType> = (props) => {
                             <Route path={"/settings"} element={<Settings/>}/>
                             <Route path={"/users"} element={<UsersPage/>}/>
                             <Route path={"/login"} element={<Login/>}/>
+                            <Route path={"/chatPage"} element={<ChatPage/>}/>
                             <Route path={"/"} element={<Login/>}/>
                             <Route path={"*"} element={<NotFound/>}/>
 

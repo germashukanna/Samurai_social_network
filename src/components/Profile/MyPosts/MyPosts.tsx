@@ -2,7 +2,7 @@ import React from 'react';
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {myPostsPropsType} from "./MyPostsConteiner";
-import {AddMessageForm, ValuesType} from "../../../Form/Form";
+import {AddMessageForm, ValuesType} from "../../../form/Form";
 
 
 const MyPosts: React.FC<myPostsPropsType> = React.memo((props) => {

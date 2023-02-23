@@ -6,7 +6,7 @@ import {getUserProfile, savePhoto, setStatusTC, updateStatusTC} from "../../redu
 import {connect} from "react-redux";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import {compose} from "redux";
-import {getProfileResponseType} from "../../Api/api";
+import {getProfileResponseType} from "../../api/api";
 
 
 type mapStateToPropsType = {
