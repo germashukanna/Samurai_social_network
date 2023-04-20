@@ -63,8 +63,6 @@ const App: React.FC<AppPropsType> = (props) => {
                             <Route path={"/chatPage"} element={<ChatPage/>}/>
                             <Route path={"/"} element={<Login/>}/>
                             <Route path={"*"} element={<NotFound/>}/>
-
-                            {/*<Route path={"/sidebar"} element={<SidebarItem key={1} img={""} name={""}/>}*/}
                         </Routes>
                     </div>
                 </div>

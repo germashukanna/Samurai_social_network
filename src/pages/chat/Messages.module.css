@@ -3,8 +3,16 @@
     overflow-y: auto;
 }
 
-.messageImg{
+.messageImg {
     height: 60px;
     width: 60px;
     border-radius: 50%;
+}
+
+.addMessageChatFormContainer {
+    margin: 20px 20px;
+}
+
+.messageChatContainer {
+    margin: 20px 20px;
 }
